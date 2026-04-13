@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: ates-store-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ates_store
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: ates_store
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
