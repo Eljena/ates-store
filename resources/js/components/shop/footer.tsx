@@ -3,7 +3,7 @@ import LinkAnimated from '../ui/link-animated';
 export default function Footer() {
     return (
         <footer>
-            <div className="flex flex-col items-center gap-5 bg-accent py-10">
+            <div className="mt-10 flex flex-col items-center gap-5 bg-accent py-10">
                 <div className="flex gap-5">
                     <LinkAnimated href="/">Startseite</LinkAnimated>
                     <LinkAnimated href="/products">Produkte</LinkAnimated>

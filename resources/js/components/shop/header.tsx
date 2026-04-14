@@ -1,13 +1,13 @@
-import { Link } from "@inertiajs/react";
-import LinkAnimated from "../ui/link-animated";
+import { Link } from '@inertiajs/react';
 import logo from '@/assets/images/ates-store-logo.png';
+import LinkAnimated from '../ui/link-animated';
 
 export default function Header() {
     return (
         <header>
-            <div className="flex max-w-7xl justify-between items-center mx-auto py-4">
+            <div className="mx-auto flex max-w-7xl items-center justify-between py-4">
                 <Link href="/" className="w-25">
-                    <img src={logo}/>
+                    <img src={logo} />
                 </Link>
 
                 <nav className="flex gap-5 text-lg">
