@@ -5,10 +5,11 @@ export default function Home() {
         <Layout>
             <section>
                 <div>
-                    <h1 className="text-3xl font-bold text-center py-4">Willkommen bei Ate's store</h1>
-
+                    <h1 className="py-4 text-center text-3xl font-bold">
+                        Willkommen bei Ate's store
+                    </h1>
                 </div>
             </section>
         </Layout>
-    )
+    );
 }
