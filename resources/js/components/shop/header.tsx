@@ -16,13 +16,13 @@ export default function Header() {
             <div className="bg-accent">
                 <div className="mx-auto flex max-w-7xl justify-end py-2">
                     {auth.user ? (
-                        <Button asChild>
+                        <Button variant="link" asChild>
                             <Link
                                 href={dashboard()}
                                 className="flex items-center gap-2"
                             >
-                                Zum Admin-Bereich
                                 <ArrowRightCircle className="size-4" />
+                                Zum Admin-Bereich
                             </Link>
                         </Button>
                     ) : (
@@ -49,7 +49,7 @@ export default function Header() {
                     )}
                 </div>
             </div>
-            <div className="mx-auto flex max-w-7xl items-center justify-between py-4">
+            <div className="mx-auto flex max-w-7xl items-center justify-between border-b py-4">
                 <Link href="/" className="w-25">
                     <img src={logo} />
                 </Link>
