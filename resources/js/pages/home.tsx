@@ -1,4 +1,3 @@
-import logo from '@/assets/images/ates-store-logo.png';
 import { Card, CardContent } from '@/components/ui/card';
 import {
     Carousel,
