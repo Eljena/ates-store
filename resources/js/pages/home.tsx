@@ -37,7 +37,7 @@ export default function Home() {
                     </HomeSection>
 
                     <HomeSection title="Empfohlene Produkte">
-                        <Carousel className="w-full">
+                        <Carousel className="w-full px-12">
                             <CarouselContent>
                                 <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                                     <ProductCard
@@ -85,8 +85,8 @@ export default function Home() {
                                     />
                                 </CarouselItem>
                             </CarouselContent>
-                            <CarouselPrevious />
-                            <CarouselNext />
+                            <CarouselPrevious className="left-2" />
+                            <CarouselNext className="right-2" />
                         </Carousel>
                     </HomeSection>
                 </div>
