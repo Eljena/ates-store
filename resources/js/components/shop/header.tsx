@@ -26,7 +26,7 @@ export default function Header() {
                             </Link>
                         </Button>
                     ) : (
-                        <div className="flex h-7 items-center gap-2">
+                        <div className="flex h-5 items-center gap-2">
                             <Button variant="link" asChild>
                                 <Link href="#">
                                     <ShoppingCart />
