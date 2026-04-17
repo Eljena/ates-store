@@ -3,7 +3,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
     Card,
-    CardAction,
     CardDescription,
     CardFooter,
     CardHeader,
@@ -11,9 +10,9 @@ import {
 } from '@/components/ui/card';
 
 type ProductCardProps = {
-    imageSrc: string;
+    imageSrc?: string | null;
     title: string;
-    category: string;
+    category?: string;
     totalPrice: string;
     pricePerKg?: string;
     pricePerL?: string;
@@ -28,21 +27,26 @@ export default function ProductCard({
     pricePerL,
 }: ProductCardProps) {
     return (
-        <Card className="relative mx-auto w-full max-w-sm pt-0">
-            <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
+        <Card className="relative mx-auto h-100 w-full max-w-sm pt-0">
+            <div className="absolute inset-0 z-30 aspect-video bg-black/15" />
             <img
-                src={imageSrc}
-                alt="Event cover"
-                className="relative z-20 aspect-video w-full object-cover brightness-60 grayscale dark:brightness-40"
+                src={imageSrc ? imageSrc : 'https://avatar.vercel.sh/shadcn1'}
+                alt={imageSrc ? title : 'Placeholder Image'}
+                className="relative z-20 aspect-video w-full object-cover"
             />
             <CardHeader>
-                <CardAction>
-                    <Badge variant="secondary">{category}</Badge>
-                </CardAction>
+                {category && (
+                    <div className="flex justify-end">
+                        <Badge variant="secondary" className="w-fit">
+                            {category}
+                        </Badge>
+                    </div>
+                )}
+
                 <CardTitle>{title}</CardTitle>
                 <CardDescription>
                     <p className="py-1 text-lg font-bold text-black">
-                        {totalPrice}
+                        {totalPrice} €
                     </p>
                     {pricePerKg && <p>{pricePerKg} pro 1 kg</p>}
                     {pricePerL && <p>{pricePerL} pro 1 L</p>}

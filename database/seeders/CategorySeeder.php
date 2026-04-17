@@ -15,17 +15,33 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Reis & Nudeln',
-            'Saucen',
-            'Snacks',
-            'Getraenke',
-            'Gewuerze',
+            [
+                'name' => 'Reis & Nudeln',
+                'image' => 'images/categories/rice.jpg',
+            ],
+            [
+                'name' => 'Saucen',
+                'image' => 'images/categories/sauce.jpg',
+            ],
+            [
+                'name' => 'Snacks',
+                'image' => '',
+            ],
+            [
+                'name' => 'Getraenke',
+                'image' => '',
+            ],
+            [
+                'name' => 'Gewuerze',
+                'image' => '',
+            ],
         ];
 
         foreach($categories as $category) {
             Category::create([
-                'name' => $category,
-                'slug' => Str::slug($category),
+                'name' => $category['name'],
+                'slug' => Str::slug($category['name']),
+                'image' => $category['image'],
             ]);
         }
     }
