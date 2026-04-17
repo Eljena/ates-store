@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'category_id',
+        'name',
+        'slug',
+        'price',
+        'stock',
+        'images',
+        'description',
+    ];    
+
     protected $casts = [
         'images' => 'array',
         'price' => 'decimal:2',
