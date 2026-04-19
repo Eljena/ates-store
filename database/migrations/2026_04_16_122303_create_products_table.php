@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->decimal('price', 10, 2);
+            $table->decimal('pricePerKg', 10,2)->nullable();
+            $table->decimal('pricePerL', 10,2)->nullable();
             $table->unsignedInteger('stock')->default(0);
             $table->json('images')->nullable();
             $table->text('description')->nullable();

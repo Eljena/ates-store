@@ -12,6 +12,8 @@ class Product extends Model
         'name',
         'slug',
         'price',
+        'pricePerKg',
+        'pricePerL',
         'stock',
         'images',
         'description',
@@ -20,6 +22,8 @@ class Product extends Model
     protected $casts = [
         'images' => 'array',
         'price' => 'decimal:2',
+        'pricePerKg' => 'decimal:2',
+        'pricePerL' => 'decimal:2',
     ];
 
     public function category(): BelongsTo

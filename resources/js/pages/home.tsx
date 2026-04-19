@@ -70,7 +70,8 @@ export default function Home({ categories, products }: HomeProps) {
                                             title={product.name}
                                             category={product.category?.name}
                                             totalPrice={product.price}
-                                            pricePerKg="2,83€"
+                                            pricePerL={product.pricePerL}
+                                            pricePerKg={product.pricePerKg}
                                         />
                                     </CarouselItem>
                                 ))}

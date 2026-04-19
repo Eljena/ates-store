@@ -11,6 +11,8 @@ export type Product = {
     name: string;
     slug: string;
     price: string;
+    pricePerL: string;
+    pricePerKg: string;
     stock: number;
     images?: string[] | null;
     description?: string | null;
