@@ -35,17 +35,17 @@ export default function Home({ categories, products }: HomeProps) {
                     </div>
 
                     <HomeSection title="Kategorien">
-                        <div className="grid grid-cols-3 gap-5">
+                        <div className="grid grid-cols-2 gap-5 md:grid-cols-3">
                             {categories.map((category) => (
                                 <div
                                     key={category.id}
-                                    className="relative h-52 overflow-hidden rounded bg-gray-300"
+                                    className="relative h-32 overflow-hidden rounded bg-gray-300 md:h-52"
                                 >
                                     {category.image && (
                                         <img
                                             src={`/${category.image}`}
                                             alt={category.name}
-                                            className="h-52 w-52"
+                                            className="md:h-52 md:w-52"
                                         />
                                     )}
                                     <div className="absolute inset-0 bg-black/40" />

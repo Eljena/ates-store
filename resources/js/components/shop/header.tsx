@@ -1,5 +1,12 @@
 import { Link, usePage } from '@inertiajs/react';
-import { ArrowRightCircle, Search, ShoppingCart, User } from 'lucide-react';
+import {
+    ArrowRightCircle,
+    Menu,
+    Search,
+    ShoppingCart,
+    User,
+} from 'lucide-react';
+import { useState } from 'react';
 import logo from '@/assets/images/ates-store-logo.png';
 import { dashboard, login } from '@/routes';
 import { Button } from '../ui/button';
@@ -7,9 +14,12 @@ import { Field } from '../ui/field';
 import { Input } from '../ui/input';
 import LinkAnimated from '../ui/link-animated';
 import { Separator } from '../ui/separator';
+import { SearchField } from '../search-field';
 
 export default function Header() {
     const { auth } = usePage().props;
+
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <header>
@@ -49,26 +59,38 @@ export default function Header() {
                     )}
                 </div>
             </div>
-            <div className="mx-auto flex max-w-7xl items-center justify-between border-b py-4">
-                <Link href="/" className="w-25">
-                    <img src={logo} />
-                </Link>
+            <div className="mx-auto max-w-7xl border-b px-4 py-4">
+                <div className="flex items-center justify-between">
+                    <Link href="/" className="w-24 shrink-0">
+                        <img src={logo} />
+                    </Link>
 
-                <nav className="flex items-center gap-5">
-                    <LinkAnimated href="/">Startseite</LinkAnimated>
-                    <LinkAnimated href="/products">Produkte</LinkAnimated>
-                    <LinkAnimated href="/cart">Warenkorb</LinkAnimated>
-                    <Field orientation="horizontal" className="gap-0">
-                        <Input
-                            className="rounded-full rounded-r-none"
-                            type="search"
-                            placeholder="Search..."
-                        />
-                        <Button className="rounded-full rounded-l-none">
-                            <Search />
+                    <nav className="hidden items-center gap-5 md:flex">
+                        <LinkAnimated href="/">Startseite</LinkAnimated>
+                        <LinkAnimated href="/products">Produkte</LinkAnimated>
+                        <LinkAnimated href="/cart">Warenkorb</LinkAnimated>
+                        <SearchField />
+                    </nav>
+
+                    <div className="md:hidden">
+                        <Button
+                            onClick={() => setIsOpen(!isOpen)}
+                            variant="ghost"
+                            className="p-4"
+                        >
+                            <Menu className="size-6" />
                         </Button>
-                    </Field>
-                </nav>
+                    </div>
+                </div>
+
+                {isOpen && (
+                    <nav className="mt-4 flex flex-col items-center gap-4 bg-accent p-4">
+                        <SearchField />
+                        <LinkAnimated href="/">Startseite</LinkAnimated>
+                        <LinkAnimated href="/products">Produkte</LinkAnimated>
+                        <LinkAnimated href="/cart">Warenkorb</LinkAnimated>
+                    </nav>
+                )}
             </div>
         </header>
     );
