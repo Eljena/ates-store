@@ -75,36 +75,36 @@ export default function Header() {
                     </div>
                 </div>
 
-                {isOpen && (
-                    <>
-                        <div
-                            className="fixed inset-0 z-40 bg-black/50"
-                            onClick={() => setIsOpen(false)}
-                        />
-                        <nav className="fixed top-1/2 left-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 bg-accent">
-                            <div className="flex w-full flex-col gap-4 px-2 py-4">
-                                <div className="flex justify-between">
-                                    <img src={logo} className="w-12" />
-                                    <Button onClick={() => setIsOpen(false)}>
-                                        <X />
-                                    </Button>
-                                </div>
-                                <div className="mb-5 flex flex-col items-center gap-6 text-lg">
-                                    <SearchField />
-                                    <LinkAnimated href="/">
-                                        Startseite
-                                    </LinkAnimated>
-                                    <LinkAnimated href="/products">
-                                        Produkte
-                                    </LinkAnimated>
-                                    <LinkAnimated href="/cart">
-                                        Warenkorb
-                                    </LinkAnimated>
-                                </div>
-                            </div>
-                        </nav>
-                    </>
-                )}
+                <div
+                    className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-200 ${
+                        isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                />
+                <nav
+                    className={`fixed top-0 left-1/2 z-50 flex w-full origin-top -translate-x-1/2 bg-accent transition-all duration-400 ${
+                        isOpen
+                            ? 'translate-y-0 scale-y-100 opacity-100'
+                            : 'pointer-events-none -translate-y-4 scale-y-0 opacity-0'
+                    }`}
+                >
+                    <div className="flex w-full flex-col gap-4 px-2 py-4">
+                        <div className="flex justify-between">
+                            <img src={logo} className="w-12" />
+                            <Button onClick={() => setIsOpen(false)}>
+                                <X />
+                            </Button>
+                        </div>
+                        <div className="mb-5 flex flex-col items-center gap-6 text-lg">
+                            <SearchField />
+                            <LinkAnimated href="/">Startseite</LinkAnimated>
+                            <LinkAnimated href="/products">
+                                Produkte
+                            </LinkAnimated>
+                            <LinkAnimated href="/cart">Warenkorb</LinkAnimated>
+                        </div>
+                    </div>
+                </nav>
             </div>
         </header>
     );
