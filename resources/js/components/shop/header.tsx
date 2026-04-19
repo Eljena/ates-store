@@ -1,20 +1,12 @@
 import { Link, usePage } from '@inertiajs/react';
-import {
-    ArrowRightCircle,
-    Menu,
-    Search,
-    ShoppingCart,
-    User,
-} from 'lucide-react';
+import { ArrowRightCircle, Menu, ShoppingCart, User, X } from 'lucide-react';
 import { useState } from 'react';
 import logo from '@/assets/images/ates-store-logo.png';
 import { dashboard, login } from '@/routes';
+import { SearchField } from '../search-field';
 import { Button } from '../ui/button';
-import { Field } from '../ui/field';
-import { Input } from '../ui/input';
 import LinkAnimated from '../ui/link-animated';
 import { Separator } from '../ui/separator';
-import { SearchField } from '../search-field';
 
 export default function Header() {
     const { auth } = usePage().props;
@@ -84,12 +76,34 @@ export default function Header() {
                 </div>
 
                 {isOpen && (
-                    <nav className="mt-4 flex flex-col items-center gap-4 bg-accent p-4">
-                        <SearchField />
-                        <LinkAnimated href="/">Startseite</LinkAnimated>
-                        <LinkAnimated href="/products">Produkte</LinkAnimated>
-                        <LinkAnimated href="/cart">Warenkorb</LinkAnimated>
-                    </nav>
+                    <>
+                        <div
+                            className="fixed inset-0 z-40 bg-black/50"
+                            onClick={() => setIsOpen(false)}
+                        />
+                        <nav className="fixed top-1/2 left-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 bg-accent">
+                            <div className="flex w-full flex-col gap-4 px-2 py-4">
+                                <div className="flex justify-between">
+                                    <img src={logo} className="w-12" />
+                                    <Button onClick={() => setIsOpen(false)}>
+                                        <X />
+                                    </Button>
+                                </div>
+                                <div className="mb-5 flex flex-col items-center gap-6 text-lg">
+                                    <SearchField />
+                                    <LinkAnimated href="/">
+                                        Startseite
+                                    </LinkAnimated>
+                                    <LinkAnimated href="/products">
+                                        Produkte
+                                    </LinkAnimated>
+                                    <LinkAnimated href="/cart">
+                                        Warenkorb
+                                    </LinkAnimated>
+                                </div>
+                            </div>
+                        </nav>
+                    </>
                 )}
             </div>
         </header>
