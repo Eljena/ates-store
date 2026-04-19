@@ -8,6 +8,7 @@ import {
     CarouselPrevious,
 } from '@/components/ui/carousel';
 import Layout from '@/layouts/shop/layout';
+import { replaceUmlauts } from '@/lib/text-normalizer';
 import type { Category, Product } from '@/types/shop';
 
 type HomeProps = {
@@ -49,7 +50,7 @@ export default function Home({ categories, products }: HomeProps) {
                                     )}
                                     <div className="absolute inset-0 bg-black/40" />
                                     <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-lg font-bold text-white text-shadow-accent">
-                                        {category.name}
+                                        {replaceUmlauts(category.name)}
                                     </h2>
                                 </div>
                             ))}
