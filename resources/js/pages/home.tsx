@@ -10,6 +10,7 @@ import {
 import Layout from '@/layouts/shop/layout';
 import { replaceUmlauts } from '@/lib/text-normalizer';
 import type { Category, Product } from '@/types/shop';
+import { Link } from '@inertiajs/react';
 
 type HomeProps = {
     categories: Category[];
@@ -37,22 +38,24 @@ export default function Home({ categories, products }: HomeProps) {
                     <HomeSection title="Kategorien">
                         <div className="grid grid-cols-2 gap-5 md:grid-cols-3">
                             {categories.map((category) => (
-                                <div
-                                    key={category.id}
-                                    className="relative h-32 overflow-hidden rounded bg-gray-300 md:h-52"
-                                >
-                                    {category.image && (
-                                        <img
-                                            src={`/${category.image}`}
-                                            alt={category.name}
-                                            className="md:h-52 md:w-52"
-                                        />
-                                    )}
-                                    <div className="absolute inset-0 bg-black/40" />
-                                    <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-lg font-bold text-white text-shadow-accent">
-                                        {replaceUmlauts(category.name)}
-                                    </h2>
-                                </div>
+                                <Link href={`/categories/${category.slug}`}>
+                                    <div
+                                        key={category.id}
+                                        className="relative h-32 overflow-hidden rounded bg-gray-300 md:h-52"
+                                    >
+                                        {category.image && (
+                                            <img
+                                                src={`/${category.image}`}
+                                                alt={category.name}
+                                                className="md:h-52 md:w-52"
+                                            />
+                                        )}
+                                        <div className="absolute inset-0 bg-black/40" />
+                                        <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-lg font-bold text-white text-shadow-accent">
+                                            {replaceUmlauts(category.name)}
+                                        </h2>
+                                    </div>
+                                </Link>
                             ))}
                         </div>
                     </HomeSection>
