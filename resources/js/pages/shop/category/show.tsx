@@ -8,7 +8,7 @@ type Props = {
 export default function Show({ category }: Props) {
     return (
         <Layout>
-            <div>{category.name}</div>
+            <h1 className="text-2xl font-bold">{category.name}</h1>
         </Layout>
     );
 }
