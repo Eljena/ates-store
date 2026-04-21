@@ -15,7 +15,7 @@ type SortSelectProps = {
 export function SortSelect({ value, onValueChange }: SortSelectProps) {
     return (
         <Select value={value} onValueChange={onValueChange}>
-            <SelectTrigger className="w-full max-w-48">
+            <SelectTrigger className="w-full">
                 <SelectValue placeholder="Sortieren nach ..." />
             </SelectTrigger>
             <SelectContent>
