@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import {
     Select,
     SelectContent,
@@ -10,12 +11,17 @@ import {
 type SortSelectProps = {
     value?: string;
     onValueChange?: (value: string) => void;
+    className?: string;
 };
 
-export function SortSelect({ value, onValueChange }: SortSelectProps) {
+export function SortSelect({
+    value,
+    onValueChange,
+    className,
+}: SortSelectProps) {
     return (
         <Select value={value} onValueChange={onValueChange}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className={cn(className, 'w-full')}>
                 <SelectValue placeholder="Sortieren nach ..." />
             </SelectTrigger>
             <SelectContent>

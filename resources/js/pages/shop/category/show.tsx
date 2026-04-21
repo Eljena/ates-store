@@ -1,11 +1,11 @@
 import { Head, Link, router } from '@inertiajs/react';
-import { SlidersHorizontal, Trash2 } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { Breadcrumbs } from '@/components/breadcrumbs';
+import CheckboxWithLabel from '@/components/checkbox-with-label';
 import ProductCard from '@/components/product-card';
 import { SortSelect } from '@/components/sort-select';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import LinkAnimated from '@/components/ui/link-animated';
 import Layout from '@/layouts/shop/layout';
 import { replaceUmlauts } from '@/lib/text-normalizer';
 import type { Category, Product } from '@/types/shop';
@@ -16,6 +16,7 @@ type Props = {
     products: Product[];
     filters: {
         sort?: string;
+        available?: boolean;
     };
 };
 
@@ -26,13 +27,33 @@ export default function Show({
     filters,
 }: Props) {
     const sort = filters.sort ?? '';
+    const available = filters.available ?? false;
+    const hasActiveFilters = !!sort || available;
 
     const categoryName = replaceUmlauts(category.name);
 
     const handleSortChange = (value: string) => {
         router.get(
             `/categories/${category.slug}`,
-            { sort: value },
+            {
+                sort: value || undefined,
+                available: available ? 1 : undefined,
+            },
+            {
+                preserveState: true,
+                preserveScroll: true,
+                replace: true,
+            },
+        );
+    };
+
+    const toggleAvailableFilter = (checked: boolean) => {
+        router.get(
+            `/categories/${category.slug}`,
+            {
+                sort: sort || undefined,
+                available: checked ? 1 : undefined,
+            },
             {
                 preserveState: true,
                 preserveScroll: true,
@@ -99,34 +120,44 @@ export default function Show({
                         <Card>
                             <CardContent>
                                 <h2 className="mb-4 text-lg font-semibold">
-                                    Filtern & Sortieren
+                                    Verfügbarkeit
                                 </h2>
-                                <div className="grid gap-5">
-                                    <SortSelect
-                                        value={sort}
-                                        onValueChange={handleSortChange}
-                                    />
-                                    <Button variant="outline">
-                                        <SlidersHorizontal />
-                                        Filtern
-                                    </Button>
-                                    {sort && (
-                                        <Button onClick={resetFilters}>
-                                            <Trash2 />
-                                            Filter zurücksetzen
-                                        </Button>
-                                    )}
-                                </div>
+                                <CheckboxWithLabel
+                                    labelName="Auf Lager"
+                                    value="available"
+                                    id="available"
+                                    checked={available}
+                                    onCheckedChange={toggleAvailableFilter}
+                                />
                             </CardContent>
                         </Card>
+
+                        <div className="text-center">
+                            {hasActiveFilters && (
+                                <Button onClick={resetFilters}>
+                                    <Trash2 />
+                                    Sortierung & Filter zurücksetzen
+                                </Button>
+                            )}
+                        </div>
                     </aside>
                     <div className="space-y-6">
                         <h1 className="pb-5 text-3xl font-bold">
                             {replaceUmlauts(category.name)}
                         </h1>
-                        <p className="text-sm text-gray-500">
-                            {products.length} Artikel
-                        </p>
+                        <div className="flex justify-between">
+                            <div>
+                                <p className="text-sm text-gray-500">
+                                    {products.length} Artikel
+                                </p>
+                            </div>
+                            <div>
+                                <SortSelect
+                                    value={sort}
+                                    onValueChange={handleSortChange}
+                                />
+                            </div>
+                        </div>
 
                         {products.length > 0 ? (
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">

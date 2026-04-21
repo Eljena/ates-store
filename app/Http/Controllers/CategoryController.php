@@ -29,6 +29,10 @@ class CategoryController extends Controller
             $productsQuery->latest();
         }
 
+        if ($request->boolean('available')) {
+            $productsQuery->where('stock', '>', 0);
+        }
+
         return Inertia::render('shop/category/show', [
             'category' => $category,
             'categories' => Category::query()
@@ -38,6 +42,7 @@ class CategoryController extends Controller
             'products' => $productsQuery->get(),
             'filters' => [
                 'sort' => $sort,
+                'available' => $request->boolean('available'),
             ],
         ]);
     }
