@@ -18,3 +18,17 @@ export type Product = {
     description?: string | null;
     category?: Category;
 };
+
+export type CategoryFilters = {
+    sort?: string;
+    available?: boolean;
+    brands?: string[];
+};
+
+export type ShowProps = {
+    category: Category;
+    categories: Category[];
+    products: Product[];
+    brands: string[];
+    filters: CategoryFilters;
+};

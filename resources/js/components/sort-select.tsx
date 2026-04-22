@@ -21,7 +21,7 @@ export function SortSelect({
 }: SortSelectProps) {
     return (
         <Select value={value} onValueChange={onValueChange}>
-            <SelectTrigger className={cn(className, 'w-full')}>
+            <SelectTrigger className={cn(className)}>
                 <SelectValue placeholder="Sortieren nach ..." />
             </SelectTrigger>
             <SelectContent>

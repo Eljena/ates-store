@@ -71,23 +71,25 @@ export default function CategoryFiltersSidebar({
                     />
                 </CardContent>
             </Card>
-            <Card>
-                <CardContent className="space-y-2">
-                    <h2 className="mb-4 text-lg font-semibold">Marken</h2>
-                    {brands.map((brand) => (
-                        <CheckboxWithLabel
-                            key={brand}
-                            id={`brand-${brand}`}
-                            labelName={brand}
-                            value={brand}
-                            checked={selectedBrands.includes(brand)}
-                            onCheckedChange={(checked) =>
-                                onToggleBrand(brand, !!checked)
-                            }
-                        />
-                    ))}
-                </CardContent>
-            </Card>
+            {brands.length > 0 && (
+                <Card>
+                    <CardContent className="space-y-2">
+                        <h2 className="mb-4 text-lg font-semibold">Marken</h2>
+                        {brands.map((brand) => (
+                            <CheckboxWithLabel
+                                key={brand}
+                                id={`brand-${brand}`}
+                                labelName={brand}
+                                value={brand}
+                                checked={selectedBrands.includes(brand)}
+                                onCheckedChange={(checked) =>
+                                    onToggleBrand(brand, !!checked)
+                                }
+                            />
+                        ))}
+                    </CardContent>
+                </Card>
+            )}
 
             <div className="text-center">
                 {hasActiveFilters && (
