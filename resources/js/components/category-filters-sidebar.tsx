@@ -10,18 +10,24 @@ type CategoryFiltersSidebarProps = {
     categories: Category[];
     currentCategorySlug: string;
     available: boolean;
+    brands: string[];
+    selectedBrands: string[];
     hasActiveFilters: boolean;
     onResetFilters: () => void;
     onToggleAvailable: (checked: boolean) => void;
+    onToggleBrand: (brand: string, checked: boolean) => void;
 };
 
 export default function CategoryFiltersSidebar({
     categories,
     currentCategorySlug,
     available,
+    brands,
+    selectedBrands,
     hasActiveFilters,
     onResetFilters,
     onToggleAvailable,
+    onToggleBrand,
 }: CategoryFiltersSidebarProps) {
     return (
         <aside className="space-y-6">
@@ -63,6 +69,23 @@ export default function CategoryFiltersSidebar({
                         checked={available}
                         onCheckedChange={onToggleAvailable}
                     />
+                </CardContent>
+            </Card>
+            <Card>
+                <CardContent className="space-y-2">
+                    <h2 className="mb-4 text-lg font-semibold">Marken</h2>
+                    {brands.map((brand) => (
+                        <CheckboxWithLabel
+                            key={brand}
+                            id={`brand-${brand}`}
+                            labelName={brand}
+                            value={brand}
+                            checked={selectedBrands.includes(brand)}
+                            onCheckedChange={(checked) =>
+                                onToggleBrand(brand, !!checked)
+                            }
+                        />
+                    ))}
                 </CardContent>
             </Card>
 

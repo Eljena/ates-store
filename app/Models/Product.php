@@ -40,6 +40,14 @@ class Product extends Model
         return $query;
     }
 
+    public function scopeFilterBrands(Builder $query, array $brands = []): Builder {
+        if (! empty($brands)) {
+            $query->whereIn('brand', $brands);
+        }
+
+        return $query;
+    }
+
     public function scopeApplySort(Builder $query, ?string $sort): Builder {
         return match ($sort) {
             'price-asc' => $query->orderBy('price', 'asc'),

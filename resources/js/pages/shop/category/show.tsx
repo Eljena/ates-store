@@ -11,9 +11,11 @@ type Props = {
     category: Category;
     categories: Category[];
     products: Product[];
+    brands: string[];
     filters: {
         sort?: string;
         available?: boolean;
+        brands?: string[];
     };
 };
 
@@ -21,20 +23,29 @@ export default function Show({
     category,
     categories,
     products,
+    brands,
     filters,
 }: Props) {
     const sort = filters.sort ?? '';
     const available = filters.available ?? false;
-    const hasActiveFilters = !!sort || available;
+    const selectedBrands = filters.brands ?? [];
+    const hasActiveFilters = !!sort || available || selectedBrands.length > 0;
 
     const categoryName = replaceUmlauts(category.name);
 
-    const handleSortChange = (value: string) => {
+    const showWithFilters = (nextFilters?: {
+        sort?: string;
+        available?: boolean;
+        brands?: string[];
+    }) => {
         router.get(
             `/categories/${category.slug}`,
             {
-                sort: value || undefined,
-                available: available ? 1 : undefined,
+                sort: nextFilters?.sort || undefined,
+                available: nextFilters?.available ? 1 : undefined,
+                brands: nextFilters?.brands?.length
+                    ? nextFilters.brands
+                    : undefined,
             },
             {
                 preserveState: true,
@@ -42,33 +53,38 @@ export default function Show({
                 replace: true,
             },
         );
+    };
+
+    const handleSortChange = (value: string) => {
+        showWithFilters({
+            sort: value,
+            available,
+            brands: selectedBrands,
+        });
     };
 
     const toggleAvailableFilter = (checked: boolean) => {
-        router.get(
-            `/categories/${category.slug}`,
-            {
-                sort: sort || undefined,
-                available: checked ? 1 : undefined,
-            },
-            {
-                preserveState: true,
-                preserveScroll: true,
-                replace: true,
-            },
-        );
+        showWithFilters({
+            sort,
+            available: checked,
+            brands: selectedBrands,
+        });
+    };
+
+    const toggleBrandFilter = (brand: string, checked: boolean) => {
+        const nextBrands = checked
+            ? [...selectedBrands, brand]
+            : selectedBrands.filter((item) => item !== brand);
+
+        showWithFilters({
+            sort,
+            available,
+            brands: nextBrands,
+        });
     };
 
     const resetFilters = () => {
-        router.get(
-            `/categories/${category.slug}`,
-            {},
-            {
-                preserveState: true,
-                preserveScroll: true,
-                replace: true,
-            },
-        );
+        showWithFilters();
     };
 
     return (
@@ -88,9 +104,12 @@ export default function Show({
                         categories={categories}
                         currentCategorySlug={category.slug}
                         available={available}
+                        brands={brands}
+                        selectedBrands={selectedBrands}
                         hasActiveFilters={hasActiveFilters}
-                        onResetFilters={resetFilters}
                         onToggleAvailable={toggleAvailableFilter}
+                        onToggleBrand={toggleBrandFilter}
+                        onResetFilters={resetFilters}
                     />
 
                     <div className="space-y-6">

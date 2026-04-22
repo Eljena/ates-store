@@ -11,16 +11,30 @@ class CategoryController extends Controller
     public function show(Request $request, string $slug) {
         $filters = $request->validate([
             'sort' => ['nullable', 'in:price-asc,price-desc,name-asc,name-desc'],
-            'available' => ['nullable', 'boolean']
+            'available' => ['nullable', 'boolean'],
+            'brands' => ['nullable', 'array'],
+            'brands.*' => ['string'],
         ]); 
 
         $category = Category::where('slug', $slug)->firstOrFail();
 
+        $sort = $filters['sort'] ?? null;
+        $selectedBrands = $filters['brands'] ?? [];
+        $available = $request->boolean('available');
+
         $products = $category->products()
             ->with('category:id,name')
-            ->available($request->boolean('available'))
-            ->applySort($filters['sort'] ?? null)
+            ->available($available)
+            ->filterBrands($selectedBrands)
+            ->applySort($sort)
             ->get();
+
+        $brandOptions = $category->products()
+            ->select('brand')
+            ->whereNotNull('brand')
+            ->distinct()
+            ->orderBy('brand')
+            ->pluck('brand');
            
         return Inertia::render('shop/category/show', [
             'category' => $category,
@@ -29,9 +43,11 @@ class CategoryController extends Controller
                 ->orderBy('name')
                 ->get(),
             'products' => $products,
+            'brands' => $brandOptions,
             'filters' => [
-                'sort' => $filters['sort'] ?? null,
-                'available' => $request->boolean('available'),
+                'sort' => $sort,
+                'available' => $available,
+                'brands' => $selectedBrands,
             ],
         ]);
     }
