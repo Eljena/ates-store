@@ -99,10 +99,9 @@ export default function Header() {
                         <div className="mb-5 flex flex-col items-center gap-6 text-lg">
                             <SearchField />
                             <LinkAnimated href="/">Startseite</LinkAnimated>
-                            <LinkAnimated href="/products">
-                                Produkte
-                            </LinkAnimated>
-                            <LinkAnimated href="/cart">Warenkorb</LinkAnimated>
+                            <LinkAnimated href="/">Über uns</LinkAnimated>
+                            <LinkAnimated href="/">Produkte</LinkAnimated>
+                            <LinkAnimated href="/">News</LinkAnimated>
                         </div>
                     </div>
                 </nav>
