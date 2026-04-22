@@ -40,7 +40,10 @@ export default function Home({ categories, products }: HomeProps) {
                         <HomeSection title="Kategorien">
                             <div className="grid grid-cols-2 gap-5 md:grid-cols-3">
                                 {categories.map((category) => (
-                                    <Link href={`/categories/${category.slug}`}>
+                                    <Link
+                                        key={category.id}
+                                        href={`/categories/${category.slug}`}
+                                    >
                                         <div
                                             key={category.id}
                                             className="relative h-32 overflow-hidden rounded bg-gray-300 md:h-52"
