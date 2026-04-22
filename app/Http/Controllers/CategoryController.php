@@ -9,39 +9,28 @@ use Inertia\Inertia;
 class CategoryController extends Controller
 {
     public function show(Request $request, string $slug) {
-        $sort = $request->query('sort');   
+        $filters = $request->validate([
+            'sort' => ['nullable', 'in:price-asc,price-desc,name-asc,name-desc'],
+            'available' => ['nullable', 'boolean']
+        ]); 
 
         $category = Category::where('slug', $slug)->firstOrFail();
 
-        $productsQuery = $category->products()->with('category');
-            
-        $sortMap = [
-            'price-asc' => ['price', 'asc'],
-            'price-desc' => ['price', 'desc'],
-            'name-asc' => ['name', 'asc'],
-            'name-desc' => ['name', 'desc'],
-        ];
-
-        if (isset($sortMap[$sort])) {
-            [$column, $direction] = $sortMap[$sort];
-            $productsQuery->orderBy($column, $direction);
-        } else {
-            $productsQuery->latest();
-        }
-
-        if ($request->boolean('available')) {
-            $productsQuery->where('stock', '>', 0);
-        }
-
+        $products = $category->products()
+            ->with('category:id,name')
+            ->available($request->boolean('available'))
+            ->applySort($filters['sort'] ?? null)
+            ->get();
+           
         return Inertia::render('shop/category/show', [
             'category' => $category,
             'categories' => Category::query()
                 ->select('id', 'name', 'slug')
-                ->orderBy('name', 'asc')
+                ->orderBy('name')
                 ->get(),
-            'products' => $productsQuery->get(),
+            'products' => $products,
             'filters' => [
-                'sort' => $sort,
+                'sort' => $filters['sort'] ?? null,
                 'available' => $request->boolean('available'),
             ],
         ]);
