@@ -59,8 +59,9 @@ export default function Header() {
 
                     <nav className="hidden items-center gap-5 md:flex">
                         <LinkAnimated href="/">Startseite</LinkAnimated>
-                        <LinkAnimated href="/products">Produkte</LinkAnimated>
-                        <LinkAnimated href="/cart">Warenkorb</LinkAnimated>
+                        <LinkAnimated href="/">Über uns</LinkAnimated>
+                        <LinkAnimated href="/">Produkte</LinkAnimated>
+                        <LinkAnimated href="/">News</LinkAnimated>
                         <SearchField />
                     </nav>
 

@@ -22,6 +22,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id' => $reisNudeln->id,
             'name' => 'Royal Thai - Jasmin-Duftreis 4,5 kg',
+            'brand' => 'Royal Thai',
             'slug' => Str::slug('Royal Thai - Jasmin-Duftreis 4,5 kg'),
             'price' => 12.75,
             'pricePerKg' => 2.83,
@@ -35,6 +36,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id' => $reisNudeln->id,
             'name' => 'Royal Thai - Jasmin-Duftreis 1 kg',
+            'brand' => 'Royal Thai',
             'slug' => Str::slug('Royal Thai - Jasmin-Duftreis 1 kg'),
             'price' => 2.85,
             'pricePerKg' => 2.85,
@@ -48,6 +50,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id' => $reisNudeln->id,
             'name' => 'Golden Turtle Chef - Jasminreis 20 kg',
+            'brand' => 'Golden Turtle Chef',
             'slug' => Str::slug('Golden Turtle Chef - Jasminreis 20 kg'),
             'price' => 39.99,
             'pricePerKg' => 2.00,
@@ -61,6 +64,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id' => $reisNudeln->id,
             'name' => 'Baitang - Jasminreis 20 kg',
+            'brand' => 'Baitang',
             'slug' => Str::slug('Baitang - Jasminreis 20 kg'),
             'price' => 37.99,
             'pricePerKg' => 1.90,
@@ -74,6 +78,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id' => $reisNudeln->id,
             'name' => 'Viet Nam - Grüne Reisflocken mit Pandan "Com Dep Xanh" 200 g',
+            'brand' => 'Viet Nam',
             'slug' => Str::slug('Viet Nam - Grüne Reisflocken mit Pandan "Com Dep Xanh" 200 g'),
             'price' => 1.69,
             'pricePerKg' => 8.45,
@@ -87,6 +92,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id' => $saucen->id,
             'name' => 'Flying Goose - Scharfe Srirachasauce 455 ml',
+            'brand' => 'Flying Goose',
             'slug' => Str::slug('Flying Goose - Scharfe Srirachasauce 455 ml'),
             'price' => 3.85,
             'pricePerL' => 8.46,
