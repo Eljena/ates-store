@@ -36,7 +36,7 @@ class CategoryController extends Controller
             ->orderBy('brand')
             ->pluck('brand');
            
-        return Inertia::render('shop/category/show', [
+        return Inertia::render('shop/categories/show', [
             'category' => $category,
             'categories' => Category::query()
                 ->select('id', 'name', 'slug')

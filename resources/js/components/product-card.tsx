@@ -44,7 +44,7 @@ export default function ProductCard({
                     </div>
                 )}
 
-                <CardTitle className="min-h-14">
+                <CardTitle className="line-clamp-2 min-h-14">
                     <Link href={'#'} className="hover:underline">
                         {title}
                     </Link>
