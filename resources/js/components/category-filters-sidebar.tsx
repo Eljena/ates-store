@@ -8,7 +8,7 @@ import { Card, CardContent } from './ui/card';
 
 type CategoryFiltersSidebarProps = {
     categories: Category[];
-    currentCategorySlug: string;
+    currentCategorySlug?: string;
     available: boolean;
     brands: string[];
     selectedBrands: string[];

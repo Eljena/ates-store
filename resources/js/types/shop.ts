@@ -25,10 +25,18 @@ export type CategoryFilters = {
     brands?: string[];
 };
 
-export type ShowProps = {
-    category: Category;
+export type ProductsViewProps = {
+    title: string;
+    currentCategorySlug?: string;
+    filterUrl: string;
     categories: Category[];
     products: Product[];
     brands: string[];
     filters: CategoryFilters;
 };
+
+export type ShowProps = ProductsViewProps & {
+    category: Category;
+};
+
+export type IndexProps = Omit<ProductsViewProps, 'title' | 'currentCategorySlug'>;

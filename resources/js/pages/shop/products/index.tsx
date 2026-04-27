@@ -1,20 +1,25 @@
-import Layout from '@/layouts/shop/layout';
-import type { Product } from '@/types/shop';
+import { Head } from '@inertiajs/react';
+import { route } from 'ziggy-js';
+import ProductsView from '@/components/products-view';
+import type { IndexProps } from '@/types/shop';
 
-type Props = {
-    products: Product[];
-};
-
-export default function Index({ products }: Props) {
+export default function Index({
+    categories,
+    products,
+    brands,
+    filters,
+}: IndexProps) {
     return (
-        <Layout>
-            <div>
-                {products.map((product) => (
-                    <div key={product.id}>
-                        {product.name} - {product.price}
-                    </div>
-                ))}
-            </div>
-        </Layout>
+        <>
+            <Head title="Alle Produkte" />
+            <ProductsView
+                title="Alle Produkte"
+                categories={categories}
+                filterUrl={route('products.index')}
+                products={products}
+                brands={brands}
+                filters={filters}
+            />
+        </>
     );
 }

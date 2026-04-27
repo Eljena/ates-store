@@ -6,12 +6,12 @@ type Filters = {
     brands?: string[];
 }
 
-export function useCategoryFilters(slug: string, current: Filters) {
+export function useProductFilters(url: string, current: Filters) {
     const { sort, available = false, brands: selectedBrands = [] } = current;
 
     const apply = (next: Filters = {}) => {
         router.get(
-            `/categories/${slug}`,
+            url,
             {
                 sort: next.sort || undefined,
                 available: next.available ? 1 : undefined,
