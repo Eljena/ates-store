@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import { route } from 'ziggy-js';
 import HomeSection from '@/components/home-section';
 import ProductCard from '@/components/product-card';
 import {
@@ -42,7 +43,9 @@ export default function Home({ categories, products }: HomeProps) {
                                 {categories.map((category) => (
                                     <Link
                                         key={category.id}
-                                        href={`/categories/${category.slug}`}
+                                        href={route('categories.show', {
+                                            slug: category.slug,
+                                        })}
                                     >
                                         <div
                                             key={category.id}

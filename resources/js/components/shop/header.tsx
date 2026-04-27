@@ -1,6 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
 import { ArrowRightCircle, Menu, ShoppingCart, User, X } from 'lucide-react';
 import { useState } from 'react';
+import { route } from 'ziggy-js';
 import logo from '@/assets/images/ates-store-logo.png';
 import { dashboard, login } from '@/routes';
 import { SearchField } from '../search-field';
@@ -60,7 +61,9 @@ export default function Header() {
                     <nav className="hidden items-center gap-5 md:flex">
                         <LinkAnimated href="/">Startseite</LinkAnimated>
                         <LinkAnimated href="/">Über uns</LinkAnimated>
-                        <LinkAnimated href="/">Produkte</LinkAnimated>
+                        <LinkAnimated href={route('products.index')}>
+                            Produkte
+                        </LinkAnimated>
                         <LinkAnimated href="/">News</LinkAnimated>
                         <SearchField />
                     </nav>
@@ -100,7 +103,9 @@ export default function Header() {
                             <SearchField />
                             <LinkAnimated href="/">Startseite</LinkAnimated>
                             <LinkAnimated href="/">Über uns</LinkAnimated>
-                            <LinkAnimated href="/">Produkte</LinkAnimated>
+                            <LinkAnimated href={route('products.index')}>
+                                Produkte
+                            </LinkAnimated>
                             <LinkAnimated href="/">News</LinkAnimated>
                         </div>
                     </div>
