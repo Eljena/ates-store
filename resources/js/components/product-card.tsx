@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { PlusCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -43,7 +44,11 @@ export default function ProductCard({
                     </div>
                 )}
 
-                <CardTitle className="line-clamp-2 min-h-14">{title}</CardTitle>
+                <CardTitle className="min-h-14">
+                    <Link href={'#'} className="hover:underline">
+                        {title}
+                    </Link>
+                </CardTitle>
                 <CardDescription className="mt-3 space-y-1">
                     <p className="py-1 text-lg font-bold text-black">
                         {totalPrice} €
