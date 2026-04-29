@@ -19,6 +19,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
                         product.images?.[0] ? `/${product.images[0]}` : null
                     }
                     title={product.name}
+                    href="#"
                     category={product.category?.name}
                     totalPrice={product.price}
                     pricePerL={product.pricePerL}

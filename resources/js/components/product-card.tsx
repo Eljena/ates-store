@@ -9,10 +9,12 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import UnitPrice from './unit-price';
 
 type ProductCardProps = {
     imageSrc?: string | null;
     title: string;
+    href: string;
     category?: string;
     totalPrice: string;
     pricePerKg?: string;
@@ -22,6 +24,7 @@ type ProductCardProps = {
 export default function ProductCard({
     imageSrc,
     title,
+    href,
     category,
     totalPrice,
     pricePerKg,
@@ -45,7 +48,7 @@ export default function ProductCard({
                 )}
 
                 <CardTitle className="line-clamp-2 min-h-14">
-                    <Link href={'#'} className="hover:underline">
+                    <Link href={href} className="hover:underline">
                         {title}
                     </Link>
                 </CardTitle>
@@ -53,8 +56,7 @@ export default function ProductCard({
                     <p className="py-1 text-lg font-bold text-black">
                         {totalPrice} €
                     </p>
-                    {pricePerKg && <p>{pricePerKg} pro 1 kg</p>}
-                    {pricePerL && <p>{pricePerL} pro 1 L</p>}
+                    <UnitPrice pricePerKg={pricePerKg} pricePerL={pricePerL} />
                 </CardDescription>
             </CardHeader>
             <CardFooter className="mt-auto">

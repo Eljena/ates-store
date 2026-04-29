@@ -4,25 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProductFilterRequest;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    public function index(Request $request) {
-        $filters = $request->validate([
-            'sort' => ['nullable', 'in:price-asc,price-desc,name-asc,name-desc'],
-            'available' => ['nullable', 'boolean'],
-            'brands' => ['nullable', 'array'],
-            'brands.*' => ['string'],
-        ]); 
-
-        $sort = $filters['sort'] ?? null;
-        $selectedBrands = $filters['brands'] ?? [];
-        $available = $request->boolean('available');
+    public function index(ProductFilterRequest $request) {
+        $filters = $request->filters();
 
         $brandOptions = Product::query()
-            ->with('category:id,name')
             ->select('brand')
             ->whereNotNull('brand')
             ->distinct()
@@ -30,9 +20,9 @@ class ProductController extends Controller
             ->pluck('brand');
 
         $products = Product::query()
-            ->available($available)
-            ->filterBrands($selectedBrands)
-            ->applySort($sort)
+            ->available($filters['available'])
+            ->filterBrands($filters['brands'])
+            ->applySort($filters['sort'])
             ->get();
 
         return Inertia::render('shop/products/index', [
@@ -42,11 +32,14 @@ class ProductController extends Controller
                 ->orderBy('name')
                 ->get(),
             'brands' => $brandOptions,
-            'filters' => [
-                'sort' => $sort,
-                'available' => $available,
-                'brands' => $selectedBrands,
-            ],
+            'filters' => $filters,
+        ]);
+    }
+
+    public function show(Product $product) {
+
+        return Inertia::render('shop/products/show', [
+            'product' => $product,
         ]);
     }
 }

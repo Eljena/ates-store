@@ -12,6 +12,8 @@ Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('cat
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });

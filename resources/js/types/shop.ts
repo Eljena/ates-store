@@ -9,6 +9,7 @@ export type Product = {
     id: number;
     category_id: number;
     name: string;
+    brand: string;
     slug: string;
     price: string;
     pricePerL: string;

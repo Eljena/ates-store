@@ -1,0 +1,62 @@
+import { Head } from '@inertiajs/react';
+import { CounterField } from '@/components/counter-field';
+import { Button } from '@/components/ui/button';
+import UnitPrice from '@/components/unit-price';
+import Layout from '@/layouts/shop/layout';
+import type { Product } from '@/types/shop';
+import { ShoppingCart } from 'lucide-react';
+
+type ShowProps = {
+    product: Product;
+};
+
+export default function Show({ product }: ShowProps) {
+    return (
+        <>
+            <Head title={product.name} />
+            <Layout>
+                <div className="flex gap-5">
+                    <div className="w-md">
+                        {product.images ? (
+                            <img
+                                src={
+                                    product.images?.[0]
+                                        ? `/${product.images[0]}`
+                                        : null
+                                }
+                            />
+                        ) : (
+                            <div className="flex h-full items-center justify-center bg-amber-200">
+                                Bild ist nicht verfügbar
+                            </div>
+                        )}
+                    </div>
+                    <div className="flex flex-col gap-10 p-5">
+                        <h2 className="text-3xl font-bold">{product.name}</h2>
+                        <div>
+                            <p className="text-2xl font-bold">
+                                {product.price} €
+                            </p>
+                            <UnitPrice
+                                pricePerKg={product.pricePerKg}
+                                pricePerL={product.pricePerL}
+                            />
+                        </div>
+                        <div>
+                            <p>Hersteller: {product.brand}</p>
+                            <p>Beschreibung: {product.description}</p>
+                        </div>
+                        <div className="flex items-center gap-5">
+                            <CounterField maxNumber={product.stock} />
+                            <p>Menge</p>
+                        </div>
+                        <Button>
+                            <ShoppingCart />
+                            In den Warenkorb
+                        </Button>
+                    </div>
+                </div>
+            </Layout>
+        </>
+    );
+}
