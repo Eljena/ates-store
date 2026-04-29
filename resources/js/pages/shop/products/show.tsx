@@ -1,21 +1,24 @@
 import { Head } from '@inertiajs/react';
+import { ShoppingCart } from 'lucide-react';
 import { CounterField } from '@/components/counter-field';
+import HomeSection from '@/components/home-section';
+import ProductCarousel from '@/components/product-carousel';
 import { Button } from '@/components/ui/button';
 import UnitPrice from '@/components/unit-price';
 import Layout from '@/layouts/shop/layout';
 import type { Product } from '@/types/shop';
-import { ShoppingCart } from 'lucide-react';
 
 type ShowProps = {
+    relatedProducts: Product[];
     product: Product;
 };
 
-export default function Show({ product }: ShowProps) {
+export default function Show({ product, relatedProducts }: ShowProps) {
     return (
         <>
             <Head title={product.name} />
             <Layout>
-                <div className="flex gap-5">
+                <div className="mb-10 flex gap-5">
                     <div className="w-md">
                         {product.images ? (
                             <img
@@ -50,12 +53,17 @@ export default function Show({ product }: ShowProps) {
                             <CounterField maxNumber={product.stock} />
                             <p>Menge</p>
                         </div>
-                        <Button>
-                            <ShoppingCart />
-                            In den Warenkorb
-                        </Button>
+                        <div>
+                            <Button>
+                                <ShoppingCart />
+                                In den Warenkorb
+                            </Button>
+                        </div>
                     </div>
                 </div>
+                <HomeSection title="Weitere Artikel" className="border-t">
+                    <ProductCarousel products={relatedProducts} />
+                </HomeSection>
             </Layout>
         </>
     );

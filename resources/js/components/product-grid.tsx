@@ -1,3 +1,4 @@
+import { route } from 'ziggy-js';
 import type { Product } from '@/types/shop';
 import ProductCard from './product-card';
 
@@ -19,7 +20,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
                         product.images?.[0] ? `/${product.images[0]}` : null
                     }
                     title={product.name}
-                    href="#"
+                    href={route('products.show', product.id)}
                     category={product.category?.name}
                     totalPrice={product.price}
                     pricePerL={product.pricePerL}
