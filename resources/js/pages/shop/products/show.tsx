@@ -18,7 +18,7 @@ export default function Show({ product, relatedProducts }: ShowProps) {
         <>
             <Head title={product.name} />
             <Layout>
-                <div className="mb-10 flex gap-5">
+                <div className="mb-10 flex items-center justify-center gap-5">
                     <div className="w-md">
                         {product.images ? (
                             <img
@@ -53,12 +53,10 @@ export default function Show({ product, relatedProducts }: ShowProps) {
                             <CounterField maxNumber={product.stock} />
                             <p>Menge</p>
                         </div>
-                        <div>
-                            <Button>
-                                <ShoppingCart />
-                                In den Warenkorb
-                            </Button>
-                        </div>
+                        <Button>
+                            <ShoppingCart />
+                            In den Warenkorb
+                        </Button>
                     </div>
                 </div>
                 <HomeSection title="Weitere Artikel" className="border-t">
