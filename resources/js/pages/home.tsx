@@ -1,18 +1,10 @@
 import { Head, Link } from '@inertiajs/react';
 import { route } from 'ziggy-js';
 import HomeSection from '@/components/home-section';
-import ProductCard from '@/components/product-card';
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from '@/components/ui/carousel';
+import ProductCarousel from '@/components/product-carousel';
 import Layout from '@/layouts/shop/layout';
 import { replaceUmlauts } from '@/lib/text-normalizer';
 import type { Category, Product } from '@/types/shop';
-import ProductCarousel from '@/components/product-carousel';
 
 type HomeProps = {
     categories: Category[];
