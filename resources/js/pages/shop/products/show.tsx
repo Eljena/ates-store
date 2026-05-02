@@ -25,7 +25,7 @@ export default function Show({ product, relatedProducts }: ShowProps) {
                                 src={
                                     product.images?.[0]
                                         ? `/${product.images[0]}`
-                                        : null
+                                        : '#'
                                 }
                             />
                         ) : (
