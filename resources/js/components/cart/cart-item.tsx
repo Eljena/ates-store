@@ -1,9 +1,10 @@
-import { Link, router } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 import { Trash } from 'lucide-react';
 import { route } from 'ziggy-js';
 import type { CartItem } from '@/types/shop';
 import { CounterField } from '../counter-field';
 import { Button } from '../ui/button';
+import LinkAnimated from '../ui/link-animated';
 import UnitPrice from '../unit-price';
 
 interface CartItemProps {
@@ -28,12 +29,16 @@ export default function CartItem({ slug, item }: CartItemProps) {
                         ? `/${item.image}`
                         : 'https://avatar.vercel.sh/shadcn1'
                 }
+                alt={item.name}
                 className="h-auto w-48 pr-10"
             />
             <div className="flex-1">
-                <Link href={route('products.show', { product: item.slug })}>
+                <LinkAnimated
+                    href={route('products.show', { product: item.slug })}
+                    className="min-w-0 break-words whitespace-normal"
+                >
                     <h3 className="text-lg">{item.name}</h3>
-                </Link>
+                </LinkAnimated>
                 <p>{item.price}</p>
                 <UnitPrice
                     pricePerKg={item.pricePerKg}

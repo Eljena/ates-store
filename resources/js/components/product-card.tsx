@@ -1,4 +1,4 @@
-import { Link, router } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 import { PlusCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { route } from 'ziggy-js';
@@ -11,6 +11,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import LinkAnimated from './ui/link-animated';
 import UnitPrice from './unit-price';
 
 type ProductCardProps = {
@@ -52,9 +53,12 @@ export default function ProductCard({
                 )}
 
                 <CardTitle className="line-clamp-2">
-                    <Link href={href} className="hover:underline">
+                    <LinkAnimated
+                        href={href}
+                        className='className="min-w-0 break-words" whitespace-normal'
+                    >
                         {title}
-                    </Link>
+                    </LinkAnimated>
                 </CardTitle>
                 <CardDescription className="mt-3 space-y-1">
                     <p className="py-1 text-lg font-bold text-black">

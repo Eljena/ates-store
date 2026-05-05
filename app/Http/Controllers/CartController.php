@@ -42,7 +42,7 @@ class CartController extends Controller
 
         $this->cart->add($product, $validated['quantity']);
 
-        return to_route('cart.index');
+        return back();
     }
 
     public function update(Request $request, string $slug) {

@@ -28,6 +28,7 @@ export default function ProductCarousel({ products }: ProductCarouselProps) {
                                     ? `/${product.images[0]}`
                                     : '#'
                             }
+                            product_id={product.id}
                             title={product.name}
                             href={route('products.show', product.id)}
                             category={product.category?.name}

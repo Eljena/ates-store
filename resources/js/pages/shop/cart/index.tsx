@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import CartItem from '@/components/cart/cart-item';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import OrderSummary from '@/components/cart/order-summary';
 import { Separator } from '@/components/ui/separator';
 import Layout from '@/layouts/shop/layout';
 import type { CartProps } from '@/types/shop';
@@ -42,36 +42,10 @@ export default function Index({ items, total }: CartProps) {
                                 )}
                             </div>
                             <div className="ml-10">
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle className="text-xl">
-                                            Bestellübersicht
-                                        </CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="space-y-3">
-                                            <div className="flex w-xs justify-between">
-                                                <p>{itemCount} Artikel</p>
-                                                <p>2,99 €</p>
-                                            </div>
-                                            <div className="flex w-xs justify-between">
-                                                <p>Versand</p>
-                                                <p>5,00 €</p>
-                                            </div>
-                                            <Separator />
-                                            <div>
-                                                <div className="flex w-xs justify-between text-lg font-bold">
-                                                    <p>Gesamt (inkl. MwSt.)</p>
-                                                    <p>{total} €</p>
-                                                </div>
-                                                <div className="flex w-xs justify-between text-sm">
-                                                    <p>enthaltene MwSt.</p>
-                                                    <p>2,34 €</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                                <OrderSummary
+                                    itemCount={itemCount}
+                                    total={total}
+                                />
                             </div>
                         </>
                     )}
