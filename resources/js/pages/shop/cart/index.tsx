@@ -30,14 +30,16 @@ export default function Index({ items, total }: CartProps) {
                         <>
                             <div className="flex-1">
                                 <Separator />
-                                {Object.entries(items).map(([slug, item]) => (
-                                    <CartItem
-                                        key={slug}
-                                        item={item}
-                                        slug={slug}
-                                    />
-                                ))}
-                                <Separator />
+                                {Object.entries(items).map(
+                                    ([slug, item], index, array) => (
+                                        <div key={slug}>
+                                            <CartItem item={item} slug={slug} />
+                                            {index < array.length - 1 && (
+                                                <Separator />
+                                            )}
+                                        </div>
+                                    ),
+                                )}
                             </div>
                             <div className="ml-10">
                                 <Card>

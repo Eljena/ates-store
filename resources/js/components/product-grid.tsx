@@ -16,6 +16,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
             {products.map((product) => (
                 <ProductCard
                     key={product.id}
+                    product_id={product.id}
                     imageSrc={
                         product.images?.[0] ? `/${product.images[0]}` : null
                     }

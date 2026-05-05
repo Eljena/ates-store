@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import Footer from '@/components/shop/footer';
 import Header from '@/components/shop/header';
+import { Toaster } from '@/components/ui/sonner';
 
 type Props = {
     children: ReactNode;
@@ -13,6 +14,7 @@ export default function Layout({ children }: Props) {
             <main className="flex-1">
                 <div className="mx-auto max-w-7xl px-4 py-6">{children}</div>
             </main>
+            <Toaster />
             <Footer />
         </div>
     );

@@ -23,7 +23,11 @@ export default function ProductCarousel({ products }: ProductCarouselProps) {
                         className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
                     >
                         <ProductCard
-                            imageSrc={product?.images[0]}
+                            imageSrc={
+                                product?.images[0]
+                                    ? `/${product.images[0]}`
+                                    : '#'
+                            }
                             title={product.name}
                             href={route('products.show', product.id)}
                             category={product.category?.name}

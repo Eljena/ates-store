@@ -47,6 +47,7 @@ export type CartItem = {
     quantity: number;
     price: string;
     name: string;
+    image: string;
     slug: string;
     stock: number;
     pricePerKg?: string;

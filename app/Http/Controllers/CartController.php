@@ -13,19 +13,32 @@ class CartController extends Controller
     public function __construct(private CartService $cart) {}
 
     public function index() {
+        $cart = $this->cart->get();
+    
+        $productIds = array_column($cart, 'product_id');
+        $products = Product::whereIn('id', $productIds)->get()->keyBy('id');
+
+        $items = collect($cart)->map(function ($item) use ($products) {
+            $product = $products[$item['product_id']];
+            return [
+                ...$item,
+                'image' => $product->images[0] ?? null,
+            ];
+        });
+
         return Inertia::render('shop/cart/index', [
-            'items' => $this->cart->get(),
+            'items' => $items,
             'total' => $this->cart->total(),
         ]);
     }
 
     public function store(Request $request) {
         $validated = $request->validate([
-            'product' => 'required|exists:products,id',
+            'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
         ]);   
         
-        $product = Product::findOrFail($validated['product']);
+        $product = Product::findOrFail($validated['product_id']);
 
         $this->cart->add($product, $validated['quantity']);
 

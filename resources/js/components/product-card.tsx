@@ -1,5 +1,7 @@
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 import { PlusCircle } from 'lucide-react';
+import { toast } from 'sonner';
+import { route } from 'ziggy-js';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,6 +14,7 @@ import {
 import UnitPrice from './unit-price';
 
 type ProductCardProps = {
+    product_id: number;
     imageSrc?: string | null;
     title: string;
     href: string;
@@ -22,6 +25,7 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({
+    product_id,
     imageSrc,
     title,
     href,
@@ -60,7 +64,24 @@ export default function ProductCard({
                 </CardDescription>
             </CardHeader>
             <CardFooter className="mt-auto">
-                <Button className="w-full">
+                <Button
+                    className="w-full"
+                    onClick={() =>
+                        router.post(
+                            route('cart.store'),
+                            {
+                                product_id: product_id,
+                                quantity: 1,
+                            },
+                            {
+                                onSuccess: () =>
+                                    toast.success(
+                                        'Produkt wurde zum Warenkorb hinzugefügt',
+                                    ),
+                            },
+                        )
+                    }
+                >
                     <PlusCircle />
                     Zum Warenkorb hinzufügen
                 </Button>

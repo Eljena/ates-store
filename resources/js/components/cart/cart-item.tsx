@@ -16,9 +16,20 @@ export default function CartItem({ slug, item }: CartItemProps) {
         router.delete(route('cart.destroy', slug));
     }
 
+    function handleQuantityChange(quantity: number) {
+        router.patch(route('cart.update', slug), { quantity });
+    }
+
     return (
         <div className="my-2 flex items-center gap-5 p-2">
-            <img src="https://placehold.co/200x150" className="pr-10" />
+            <img
+                src={
+                    item.image !== null
+                        ? `/${item.image}`
+                        : 'https://avatar.vercel.sh/shadcn1'
+                }
+                className="h-auto w-48 pr-10"
+            />
             <div className="flex-1">
                 <Link href={route('products.show', { product: item.slug })}>
                     <h3 className="text-lg">{item.name}</h3>
@@ -29,7 +40,11 @@ export default function CartItem({ slug, item }: CartItemProps) {
                     pricePerL={item.pricePerL}
                 />
             </div>
-            <CounterField maxNumber={item.stock} initialValue={item.quantity} />
+            <CounterField
+                maxNumber={item.stock}
+                initialValue={item.quantity}
+                onChange={handleQuantityChange}
+            />
             <Button
                 title="Produkt entfernen"
                 className="ml-10"

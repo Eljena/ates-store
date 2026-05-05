@@ -5,20 +5,26 @@ import { Input } from './ui/input';
 type CounterFieldProps = {
     maxNumber: number;
     initialValue?: number;
+    onChange?: (value: number) => void;
 };
 
 export function CounterField({
     maxNumber,
     initialValue = 1,
+    onChange,
 }: CounterFieldProps) {
     const [counter, setCounter] = useState(initialValue);
 
     function increment() {
-        setCounter((current) => Math.min(current + 1, maxNumber));
+        const next = Math.min(counter + 1, maxNumber);
+        setCounter(next);
+        onChange?.(next);
     }
 
     function decrement() {
-        setCounter((current) => Math.max(current - 1, 1));
+        const next = Math.max(counter - 1, 1);
+        setCounter(next);
+        onChange?.(next);
     }
 
     return (

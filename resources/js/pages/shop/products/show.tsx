@@ -1,5 +1,7 @@
-import { Head } from '@inertiajs/react';
+import { Head, router } from '@inertiajs/react';
 import { ShoppingCart } from 'lucide-react';
+import { useState } from 'react';
+import { route } from 'ziggy-js';
 import { CounterField } from '@/components/counter-field';
 import HomeSection from '@/components/home-section';
 import ProductCarousel from '@/components/product-carousel';
@@ -14,6 +16,8 @@ type ShowProps = {
 };
 
 export default function Show({ product, relatedProducts }: ShowProps) {
+    const [quantity, setQuantity] = useState(1);
+
     return (
         <>
             <Head title={product.name} />
@@ -50,10 +54,20 @@ export default function Show({ product, relatedProducts }: ShowProps) {
                             <p>Beschreibung: {product.description}</p>
                         </div>
                         <div className="flex items-center gap-5">
-                            <CounterField maxNumber={product.stock} />
+                            <CounterField
+                                maxNumber={product.stock}
+                                onChange={setQuantity}
+                            />
                             <p>Menge</p>
                         </div>
-                        <Button>
+                        <Button
+                            onClick={() =>
+                                router.post(route('cart.store'), {
+                                    product_id: product.id,
+                                    quantity,
+                                })
+                            }
+                        >
                             <ShoppingCart />
                             In den Warenkorb
                         </Button>
