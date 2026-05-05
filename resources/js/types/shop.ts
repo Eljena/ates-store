@@ -20,6 +20,18 @@ export type Product = {
     category?: Category;
 };
 
+export type CartItem = {
+    product_id: number;
+    quantity: number;
+    price: string;
+    name: string;
+    image: string;
+    slug: string;
+    stock: number;
+    pricePerKg?: string;
+    pricePerL?: string;
+};
+
 export type CategoryFilters = {
     sort?: string;
     available?: boolean;
@@ -41,18 +53,6 @@ export type ShowProps = ProductsViewProps & {
 };
 
 export type IndexProps = Omit<ProductsViewProps, 'title' | 'currentCategorySlug'>;
-
-export type CartItem = {
-    product_id: number;
-    quantity: number;
-    price: string;
-    name: string;
-    image: string;
-    slug: string;
-    stock: number;
-    pricePerKg?: string;
-    pricePerL?: string;
-};
 
 export type CartProps = {
     items: Record<string, CartItem>;

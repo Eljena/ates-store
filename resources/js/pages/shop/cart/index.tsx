@@ -40,6 +40,7 @@ export default function Index({ items, total }: CartProps) {
                                         </div>
                                     ),
                                 )}
+                                <Separator />
                             </div>
                             <div className="ml-10">
                                 <OrderSummary
