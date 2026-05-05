@@ -4,10 +4,14 @@ import { Input } from './ui/input';
 
 type CounterFieldProps = {
     maxNumber: number;
+    initialValue?: number;
 };
 
-export function CounterField({ maxNumber }: CounterFieldProps) {
-    const [counter, setCounter] = useState(1);
+export function CounterField({
+    maxNumber,
+    initialValue = 1,
+}: CounterFieldProps) {
+    const [counter, setCounter] = useState(initialValue);
 
     function increment() {
         setCounter((current) => Math.min(current + 1, maxNumber));

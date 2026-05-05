@@ -1,0 +1,42 @@
+import { Link, router } from '@inertiajs/react';
+import { Trash } from 'lucide-react';
+import { route } from 'ziggy-js';
+import type { CartItem } from '@/types/shop';
+import { CounterField } from '../counter-field';
+import { Button } from '../ui/button';
+import UnitPrice from '../unit-price';
+
+interface CartItemProps {
+    slug: string;
+    item: CartItem;
+}
+
+export default function CartItem({ slug, item }: CartItemProps) {
+    function handleRemove() {
+        router.delete(route('cart.destroy', slug));
+    }
+
+    return (
+        <div className="my-2 flex items-center gap-5 p-2">
+            <img src="https://placehold.co/200x150" className="pr-10" />
+            <div className="flex-1">
+                <Link href={route('products.show', { product: item.slug })}>
+                    <h3 className="text-lg">{item.name}</h3>
+                </Link>
+                <p>{item.price}</p>
+                <UnitPrice
+                    pricePerKg={item.pricePerKg}
+                    pricePerL={item.pricePerL}
+                />
+            </div>
+            <CounterField maxNumber={item.stock} initialValue={item.quantity} />
+            <Button
+                title="Produkt entfernen"
+                className="ml-10"
+                onClick={handleRemove}
+            >
+                <Trash />
+            </Button>
+        </div>
+    );
+}

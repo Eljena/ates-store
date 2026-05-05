@@ -31,7 +31,7 @@ export default function Header() {
                     ) : (
                         <div className="flex h-5 items-center gap-2">
                             <Button variant="link" asChild>
-                                <Link href="#">
+                                <Link href={route('cart.index')}>
                                     <ShoppingCart />
                                     Warenkorb
                                 </Link>

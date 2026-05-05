@@ -21,8 +21,13 @@ class CartService {
         } else {
             $cart[$product->slug] = [
                 'product_id' => $product->id,
+                'name' => $product->name,
+                'slug' => $product->slug,
                 'quantity' => $quantity,
+                'stock' => $product->stock,
                 'price' => $product->price,
+                'pricePerKg' => $product->pricePerKg,
+                'pricePerL' => $product->pricePerL,
             ];
         } 
 
