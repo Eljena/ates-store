@@ -10,14 +10,14 @@ import LinkAnimated from '../ui/link-animated';
 import { Separator } from '../ui/separator';
 
 export default function Header() {
-    const { auth } = usePage().props;
+    const { auth, cartItemsCount } = usePage().props;
 
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <header>
             <div className="bg-accent">
-                <div className="mx-auto flex max-w-7xl justify-end py-2">
+                <div className="mx-auto flex max-w-7xl justify-end py-3">
                     {auth.user ? (
                         <Button variant="link" asChild>
                             <Link
@@ -31,8 +31,18 @@ export default function Header() {
                     ) : (
                         <div className="flex h-5 items-center gap-2">
                             <Button variant="link" asChild>
-                                <Link href={route('cart.index')}>
-                                    <ShoppingCart />
+                                <Link
+                                    href={route('cart.index')}
+                                    className="relative flex items-center gap-2"
+                                >
+                                    <div className="relative">
+                                        <ShoppingCart className="size-5" />
+                                        {cartItemsCount > 0 && (
+                                            <span className="absolute -top-2 -right-2 flex size-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                                                {cartItemsCount}
+                                            </span>
+                                        )}
+                                    </div>
                                     Warenkorb
                                 </Link>
                             </Button>
