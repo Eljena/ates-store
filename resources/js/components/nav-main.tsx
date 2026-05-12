@@ -1,4 +1,6 @@
 import { Link } from '@inertiajs/react';
+import { House } from 'lucide-react';
+import { route } from 'ziggy-js';
 import {
     SidebarGroup,
     SidebarGroupLabel,
@@ -35,6 +37,19 @@ export function NavMain({ portalItems = [], adminItems = [] }: NavMainProps) {
 
     return (
         <SidebarGroup className="px-2 py-0">
+            <SidebarMenu>
+                <SidebarMenuItem>
+                    <SidebarMenuButton
+                        asChild
+                        tooltip={{ children: 'Zur Startseite' }}
+                    >
+                        <Link href={route('home')} prefetch>
+                            <House />
+                            <span>Zur Startseite</span>
+                        </Link>
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
+            </SidebarMenu>
             <SidebarGroupLabel>Portal</SidebarGroupLabel>
             <SidebarMenu>{renderItems(portalItems)}</SidebarMenu>
             <SidebarGroupLabel>Admin</SidebarGroupLabel>

@@ -34,9 +34,11 @@ Route::get('/checkout/success', function() {
 })->name('checkout.success');
 
 /** Eingeloggt */
-Route::middleware(['auth', 'verified', EnsureUserIsAdmin::class])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
+});
 
+Route::middleware(['auth', 'verified', EnsureUserIsAdmin::class])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 });
 
