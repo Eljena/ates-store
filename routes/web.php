@@ -7,7 +7,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\AdminController;
 use App\Http\Middleware\EnsureCartIsNotEmpty;
+use App\Http\Middleware\EnsureUserIsAdmin;
 use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -31,9 +33,11 @@ Route::get('/checkout/success', function() {
     return Inertia::render('shop/checkout/success');
 })->name('checkout.success');
 
-/** Login */
-Route::middleware(['auth', 'verified'])->group(function () {
+/** Eingeloggt */
+Route::middleware(['auth', 'verified', EnsureUserIsAdmin::class])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 });
 
 require __DIR__.'/settings.php';

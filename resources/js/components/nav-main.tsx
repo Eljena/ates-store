@@ -9,28 +9,36 @@ import {
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import type { NavItem } from '@/types';
 
-export function NavMain({ items = [] }: { items: NavItem[] }) {
+type NavMainProps = {
+    portalItems: NavItem[];
+    adminItems: NavItem[];
+};
+
+export function NavMain({ portalItems = [], adminItems = [] }: NavMainProps) {
     const { isCurrentUrl } = useCurrentUrl();
+
+    const renderItems = (items: NavItem[]) =>
+        items.map((item) => (
+            <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton
+                    asChild
+                    isActive={isCurrentUrl(item.href)}
+                    tooltip={{ children: item.title }}
+                >
+                    <Link href={item.href} prefetch>
+                        {item.icon && <item.icon />}
+                        <span>{item.title}</span>
+                    </Link>
+                </SidebarMenuButton>
+            </SidebarMenuItem>
+        ));
 
     return (
         <SidebarGroup className="px-2 py-0">
-            <SidebarGroupLabel>Platform</SidebarGroupLabel>
-            <SidebarMenu>
-                {items.map((item) => (
-                    <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton
-                            asChild
-                            isActive={isCurrentUrl(item.href)}
-                            tooltip={{ children: item.title }}
-                        >
-                            <Link href={item.href} prefetch>
-                                {item.icon && <item.icon />}
-                                <span>{item.title}</span>
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                ))}
-            </SidebarMenu>
+            <SidebarGroupLabel>Portal</SidebarGroupLabel>
+            <SidebarMenu>{renderItems(portalItems)}</SidebarMenu>
+            <SidebarGroupLabel>Admin</SidebarGroupLabel>
+            <SidebarMenu>{renderItems(adminItems)}</SidebarMenu>
         </SidebarGroup>
     );
 }
