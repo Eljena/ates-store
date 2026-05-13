@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Enums\Role;
 
 class EnsureUserIsAdmin
 {
@@ -21,7 +22,7 @@ class EnsureUserIsAdmin
             return redirect()->route('home');
         }
 
-        if (!($user->is_admin)) {
+        if (!($user->role === Role::Admin)) {
             return redirect()->route('dashboard');
         }
 
