@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { House } from 'lucide-react';
 import { route } from 'ziggy-js';
 import {
@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/sidebar';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import type { NavItem } from '@/types';
+import { Role } from '@/types/enums';
 
 type NavMainProps = {
     portalItems: NavItem[];
@@ -17,6 +18,9 @@ type NavMainProps = {
 };
 
 export function NavMain({ portalItems = [], adminItems = [] }: NavMainProps) {
+    const page = usePage();
+    const { auth } = page.props;
+
     const { isCurrentUrl } = useCurrentUrl();
 
     const renderItems = (items: NavItem[]) =>
@@ -52,8 +56,12 @@ export function NavMain({ portalItems = [], adminItems = [] }: NavMainProps) {
             </SidebarMenu>
             <SidebarGroupLabel>Portal</SidebarGroupLabel>
             <SidebarMenu>{renderItems(portalItems)}</SidebarMenu>
-            <SidebarGroupLabel>Admin</SidebarGroupLabel>
-            <SidebarMenu>{renderItems(adminItems)}</SidebarMenu>
+            {auth.user.role === Role.Admin && (
+                <>
+                    <SidebarGroupLabel>Admin</SidebarGroupLabel>
+                    <SidebarMenu>{renderItems(adminItems)}</SidebarMenu>
+                </>
+            )}
         </SidebarGroup>
     );
 }
