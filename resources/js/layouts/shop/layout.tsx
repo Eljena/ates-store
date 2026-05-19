@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import DemoBanner from '@/components/demo-banner';
 import Footer from '@/components/shop/footer';
 import Header from '@/components/shop/header';
 import { Toaster } from '@/components/ui/sonner';
@@ -16,6 +17,7 @@ export default function Layout({ children }: Props) {
             </main>
             <Toaster />
             <Footer />
+            <DemoBanner />
         </div>
     );
 }

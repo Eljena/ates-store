@@ -15,6 +15,8 @@ createInertiaApp({
             case name === 'welcome':
             case name === 'home':
                 return null;
+            case name === 'imprint':
+                return null;
             case name.startsWith('shop/'):
                 return null;
             case name.startsWith('auth/'):
