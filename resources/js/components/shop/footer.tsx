@@ -10,9 +10,9 @@ export default function Footer() {
                     <LinkAnimated href={route('imprint')}>
                         Impressum
                     </LinkAnimated>
-                    <Separator orientation="vertical" className="bg-black" />
+                    <Separator orientation="vertical" className="bg-primary" />
                     <LinkAnimated href="#">Datenschutz</LinkAnimated>
-                    <Separator orientation="vertical" className="bg-black" />
+                    <Separator orientation="vertical" className="bg-primary" />
                     <LinkAnimated href="#">AGB</LinkAnimated>
                 </div>
                 <p className="text-base font-bold">&copy; 2026 Ate's store</p>
