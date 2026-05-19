@@ -22,8 +22,8 @@ export default function Show({ product, relatedProducts }: ShowProps) {
         <>
             <Head title={product.name} />
             <Layout>
-                <div className="mb-10 flex items-center justify-center gap-5">
-                    <div className="w-md">
+                <div className="mb-10 flex flex-col items-center justify-center gap-5 md:flex-row md:items-center md:justify-center">
+                    <div className="w-full w-md">
                         {product.images ? (
                             <img
                                 src={
