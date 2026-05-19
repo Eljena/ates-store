@@ -24,7 +24,7 @@ export default function ProductCarousel({ products }: ProductCarouselProps) {
                     >
                         <ProductCard
                             imageSrc={
-                                product?.images[0]
+                                product?.images?.[0]
                                     ? `/${product.images[0]}`
                                     : '#'
                             }

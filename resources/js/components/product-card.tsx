@@ -1,5 +1,5 @@
-import { router } from '@inertiajs/react';
-import { PlusCircle } from 'lucide-react';
+import { Link, router } from '@inertiajs/react';
+import { ShoppingCart } from 'lucide-react';
 import { toast } from 'sonner';
 import { route } from 'ziggy-js';
 import { Badge } from '@/components/ui/badge';
@@ -37,12 +37,16 @@ export default function ProductCard({
 }: ProductCardProps) {
     return (
         <Card className="relative mx-auto h-full w-full max-w-sm pt-0">
-            <div className="absolute inset-0 z-30 aspect-video rounded-t-md bg-black/15" />
-            <img
-                src={imageSrc ? imageSrc : 'https://avatar.vercel.sh/shadcn1'}
-                alt={imageSrc ? title : 'Placeholder Image'}
-                className="relative z-20 aspect-video w-full object-cover"
-            />
+            <Link href={href}>
+                <div className="absolute inset-0 z-30 aspect-video rounded-t-md bg-black/15" />
+                <img
+                    src={
+                        imageSrc ? imageSrc : 'https://avatar.vercel.sh/shadcn1'
+                    }
+                    alt={imageSrc ? title : 'Placeholder Image'}
+                    className="relative z-20 aspect-video w-full object-cover"
+                />
+            </Link>
             <CardHeader className="flex-1">
                 {category && (
                     <div className="flex justify-end">
@@ -55,16 +59,20 @@ export default function ProductCard({
                 <CardTitle className="line-clamp-2">
                     <LinkAnimated
                         href={href}
-                        className='className="min-w-0 break-words" whitespace-normal'
+                        className='className="min-w-0 break-words" text-sm whitespace-normal sm:text-lg'
                     >
                         {title}
                     </LinkAnimated>
                 </CardTitle>
                 <CardDescription className="mt-3 space-y-1">
-                    <p className="py-1 text-lg font-bold text-black">
+                    <p className="py-1 text-sm font-bold text-black sm:text-lg">
                         {totalPrice} €
                     </p>
-                    <UnitPrice pricePerKg={pricePerKg} pricePerL={pricePerL} />
+                    <UnitPrice
+                        className="text-sm sm:text-lg"
+                        pricePerKg={pricePerKg}
+                        pricePerL={pricePerL}
+                    />
                 </CardDescription>
             </CardHeader>
             <CardFooter className="mt-auto">
@@ -87,8 +95,10 @@ export default function ProductCard({
                         )
                     }
                 >
-                    <PlusCircle />
-                    Zum Warenkorb hinzufügen
+                    <ShoppingCart />
+                    <span className="hidden sm:inline">
+                        Zum Warenkorb hinzufügen
+                    </span>
                 </Button>
             </CardFooter>
         </Card>
