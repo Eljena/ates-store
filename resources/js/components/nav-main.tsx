@@ -56,7 +56,7 @@ export function NavMain({ portalItems = [], adminItems = [] }: NavMainProps) {
             </SidebarMenu>
             <SidebarGroupLabel>Portal</SidebarGroupLabel>
             <SidebarMenu>{renderItems(portalItems)}</SidebarMenu>
-            {auth.user.role === Role.Admin && (
+            {auth.user?.role === Role.Admin && (
                 <>
                     <SidebarGroupLabel>Admin</SidebarGroupLabel>
                     <SidebarMenu>{renderItems(adminItems)}</SidebarMenu>

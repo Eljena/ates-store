@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LegalController;
 use App\Http\Middleware\EnsureCartIsNotEmpty;
 use App\Http\Middleware\EnsureUserIsAdmin;
 use Inertia\Inertia;
@@ -41,6 +42,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified', EnsureUserIsAdmin::class])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 });
+
+/** Impressum */
+Route::get('/imprint', [LegalController::class, 'imprint'])->name('imprint');
 
 require __DIR__.'/settings.php';
     
