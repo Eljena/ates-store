@@ -1,6 +1,5 @@
 import { Head } from '@inertiajs/react';
 import PageHeading from '@/components/page-heading';
-import LinkAnimated from '@/components/ui/link-animated';
 import Layout from '@/layouts/shop/layout';
 
 export default function Imprint() {
