@@ -56,14 +56,17 @@ export default function ProductsView({
                                 Filter & Sortierung
                             </Button>
                         </DrawerTrigger>
-                        <DrawerContent>
+                        <DrawerContent className="max-h-[85vh]">
                             <DrawerHeader>
                                 <DrawerTitle>Filter & Sortierung</DrawerTitle>
                             </DrawerHeader>
-                            <div className="space-y-4 overflow-y-auto p-4">
+                            <div className="space-y-4 overflow-y-auto px-4 pb-24">
                                 <div className="flex items-center justify-between">
                                     Sortierung
-                                    <SortSelect value={sort} />
+                                    <SortSelect
+                                        value={sort}
+                                        onValueChange={handleSortChange}
+                                    />
                                 </div>
                                 <CategoryFiltersSidebar
                                     categories={categories}
