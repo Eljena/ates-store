@@ -73,9 +73,11 @@ export default function Show({ product, relatedProducts }: ShowProps) {
                         </Button>
                     </div>
                 </div>
-                <HomeSection title="Weitere Artikel" className="border-t">
-                    <ProductCarousel products={relatedProducts} />
-                </HomeSection>
+                {relatedProducts.length > 0 && (
+                    <HomeSection title="Weitere Artikel" className="border-t">
+                        <ProductCarousel products={relatedProducts} />
+                    </HomeSection>
+                )}
             </Layout>
         </>
     );
