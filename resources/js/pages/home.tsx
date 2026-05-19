@@ -32,7 +32,7 @@ export default function Home({ categories, products }: HomeProps) {
                         </div>
 
                         <HomeSection title="Kategorien">
-                            <div className="grid grid-cols-2 gap-5 md:grid-cols-3 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:mx-auto [&>*:last-child:nth-child(odd)]:w-1/2">
+                            <div className="grid grid-cols-2 gap-5 md:grid-cols-3 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:mx-auto [&>*:last-child:nth-child(odd)]:w-1/2 md:[&>*:last-child:nth-child(odd)]:col-span-1 md:[&>*:last-child:nth-child(odd)]:mx-0 md:[&>*:last-child:nth-child(odd)]:w-full">
                                 {categories.map((category) => (
                                     <Link
                                         key={category.id}
@@ -42,7 +42,7 @@ export default function Home({ categories, products }: HomeProps) {
                                     >
                                         <div
                                             key={category.id}
-                                            className="relative h-20 w-32 overflow-hidden rounded bg-gray-300 md:h-52"
+                                            className="relative h-20 w-32 overflow-hidden rounded bg-gray-300 md:h-52 md:w-52"
                                         >
                                             {category.image && (
                                                 <img
