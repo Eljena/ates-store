@@ -124,7 +124,7 @@ export default function Create() {
                                             }
                                             type="text"
                                             id="address"
-                                            placeholder="Westring 306, 24116 Kiel"
+                                            placeholder="Höhenfeld Weg 241, 12345 Glücksstadt"
                                         />
                                         <InputError
                                             message={errors.customer_address}

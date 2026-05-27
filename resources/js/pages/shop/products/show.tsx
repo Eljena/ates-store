@@ -1,6 +1,7 @@
 import { Head, router } from '@inertiajs/react';
 import { ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { route } from 'ziggy-js';
 import { CounterField } from '@/components/counter-field';
 import HomeSection from '@/components/home-section';
@@ -62,10 +63,22 @@ export default function Show({ product, relatedProducts }: ShowProps) {
                         </div>
                         <Button
                             onClick={() =>
-                                router.post(route('cart.store'), {
-                                    product_id: product.id,
-                                    quantity,
-                                })
+                                router.post(
+                                    route('cart.store'),
+                                    {
+                                        product_id: product.id,
+                                        quantity,
+                                    },
+                                    {
+                                        preserveState: true,
+                                        preserveScroll: true,
+                                        replace: true,
+                                        onSuccess: () =>
+                                            toast.success(
+                                                'Produkt wurde zum Warenkorb hinzugefügt',
+                                            ),
+                                    },
+                                )
                             }
                         >
                             <ShoppingCart />
