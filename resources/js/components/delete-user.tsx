@@ -15,6 +15,7 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
+import { translate } from '@/hooks/use-translation';
 
 export default function DeleteUser() {
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -23,14 +24,18 @@ export default function DeleteUser() {
         <div className="space-y-6">
             <Heading
                 variant="small"
-                title="Delete account"
-                description="Delete your account and all of its resources"
+                title={translate('Delete account')}
+                description={translate(
+                    'Delete your account and all of its resources',
+                )}
             />
             <div className="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10">
                 <div className="relative space-y-0.5 text-red-600 dark:text-red-100">
-                    <p className="font-medium">Warning</p>
+                    <p className="font-medium">{translate('Warning')}</p>
                     <p className="text-sm">
-                        Please proceed with caution, this cannot be undone.
+                        {translate(
+                            'Please proceed with caution, this cannot be undone.',
+                        )}
                     </p>
                 </div>
 
@@ -40,18 +45,20 @@ export default function DeleteUser() {
                             variant="destructive"
                             data-test="delete-user-button"
                         >
-                            Delete account
+                            {translate('Delete account')}
                         </Button>
                     </DialogTrigger>
                     <DialogContent>
                         <DialogTitle>
-                            Are you sure you want to delete your account?
+                            {translate(
+                                'Are you sure you want to delete your account?',
+                            )}
                         </DialogTitle>
                         <DialogDescription>
-                            Once your account is deleted, all of its resources
+                            {translate(`Once your account is deleted, all of its resources
                             and data will also be permanently deleted. Please
                             enter your password to confirm you would like to
-                            permanently delete your account.
+                            permanently delete your account.`)}
                         </DialogDescription>
 
                         <Form
@@ -70,14 +77,14 @@ export default function DeleteUser() {
                                             htmlFor="password"
                                             className="sr-only"
                                         >
-                                            Password
+                                            {translate('Password')}
                                         </Label>
 
                                         <PasswordInput
                                             id="password"
                                             name="password"
                                             ref={passwordInput}
-                                            placeholder="Password"
+                                            placeholder={translate('Password')}
                                             autoComplete="current-password"
                                         />
 
@@ -105,7 +112,7 @@ export default function DeleteUser() {
                                                 type="submit"
                                                 data-test="confirm-delete-user-button"
                                             >
-                                                Delete account
+                                                {translate('Delete account')}
                                             </button>
                                         </Button>
                                     </DialogFooter>
