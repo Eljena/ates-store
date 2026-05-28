@@ -24,8 +24,9 @@ Ein vollständiges E-Commerce-Projekt als Lernprojekt, entwickelt mit **Laravel*
 - Warenkorb mit Validierung (Middleware)
 - Benutzer- & Rollenverwaltung (Admin)
 - Authentifizierung
-- Bestellverwaltung (in progress)
 - Mehrsprachigkeit (Laravel Language Files)
+- Responsive UI mit Tailwind CSS
+- Bestellverwaltung (in progress)
   
 ---
 
@@ -36,7 +37,7 @@ Dieses Projekt entstand als persönliches Lernprojekt. Ziel ist es, eine vollst�
 
 ## Entwicklerin
 
-**Eljena** - Masterstudentin Medieninformatik, TH Lübeck
+**Eljena** - B.Sc. Medieninformatik, TH Lübeck
 UX/UI Design · Frontend Development · Full-Stack
 
 ---
