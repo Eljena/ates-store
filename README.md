@@ -37,8 +37,9 @@ Dieses Projekt entstand als persönliches Lernprojekt. Ziel ist es, eine vollst�
 
 ## Entwicklerin
 
-**Eljena** - B.Sc. Medieninformatik, TH Lübeck
-UX/UI Design · Frontend Development · Full-Stack
+**Eljena Trüschel**
+B.Sc. Medieninformatik – TH Lübeck  
+Frontend Development · Full-Stack · UI/UX Design
 
 ---
 
