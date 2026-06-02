@@ -22,7 +22,7 @@ export default function CartItem({ slug, item }: CartItemProps) {
     }
 
     return (
-        <div className="my-2 flex items-center gap-5 p-2">
+        <div className="flex flex-col gap-4 space-y-1 p-4 md:flex-row md:items-center md:gap-5">
             <img
                 src={
                     item.image !== null
@@ -30,33 +30,31 @@ export default function CartItem({ slug, item }: CartItemProps) {
                         : 'https://avatar.vercel.sh/shadcn1'
                 }
                 alt={item.name}
-                className="h-auto w-48 pr-10"
+                className="h-40 w-full object-contain md:h-auto md:w-40"
             />
-            <div className="flex-1">
+            <div className="min-w-0 flex-1">
                 <LinkAnimated
                     href={route('products.show', { product: item.slug })}
-                    className="min-w-0 break-words whitespace-normal"
+                    className="min-w-0 wrap-break-word whitespace-normal"
                 >
-                    <h3 className="text-lg">{item.name}</h3>
+                    <h3 className="text-lg font-medium">{item.name}</h3>
                 </LinkAnimated>
-                <p>{item.price}</p>
+                <p className="text-lg font-bold">{item.price} €</p>
                 <UnitPrice
                     pricePerKg={item.pricePerKg}
                     pricePerL={item.pricePerL}
                 />
             </div>
-            <CounterField
-                maxNumber={item.stock}
-                initialValue={item.quantity}
-                onChange={handleQuantityChange}
-            />
-            <Button
-                title="Produkt entfernen"
-                className="ml-10"
-                onClick={handleRemove}
-            >
-                <Trash />
-            </Button>
+            <div className="flex items-center justify-between gap-4 md:justify-end">
+                <CounterField
+                    maxNumber={item.stock}
+                    initialValue={item.quantity}
+                    onChange={handleQuantityChange}
+                />
+                <Button title="Produkt entfernen" onClick={handleRemove}>
+                    <Trash />
+                </Button>
+            </div>
         </div>
     );
 }
