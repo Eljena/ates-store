@@ -55,10 +55,9 @@ export default function DeleteUser() {
                             )}
                         </DialogTitle>
                         <DialogDescription>
-                            {translate(`Once your account is deleted, all of its resources
-                            and data will also be permanently deleted. Please
-                            enter your password to confirm you would like to
-                            permanently delete your account.`)}
+                            {translate(
+                                'Once your account is deleted, all of its resources and data will also be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.',
+                            )}
                         </DialogDescription>
 
                         <Form

@@ -41,9 +41,7 @@ export default function Index({ items, total }: CartProps) {
                             )}
                             <Separator />
                         </div>
-                        <div className="">
-                            <OrderSummary itemCount={itemCount} total={total} />
-                        </div>
+                        <OrderSummary itemCount={itemCount} total={total} />
                     </div>
                 )}
             </Layout>
