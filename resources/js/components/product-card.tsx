@@ -86,7 +86,9 @@ export default function ProductCard({
                                 quantity: 1,
                             },
                             {
+                                preserveState: true,
                                 preserveScroll: true,
+                                replace: true,
                                 onSuccess: () =>
                                     toast.success(
                                         'Produkt wurde zum Warenkorb hinzugefügt',

@@ -19,38 +19,31 @@ export default function Index({ items, total }: CartProps) {
                     Warenkorb{' '}
                     <span className="text-gray-500">({itemCount} Artikel)</span>
                 </h1>
-                <div className="flex">
-                    {Object.keys(items).length == 0 ? (
-                        <div className="flex min-h-64 w-full items-center justify-center">
-                            <p className="text-lg font-bold">
-                                Dein Warenkorb ist leer.
-                            </p>
+                {Object.keys(items).length == 0 ? (
+                    <div className="flex min-h-64 w-full items-center justify-center">
+                        <p className="text-lg font-bold">
+                            Dein Warenkorb ist leer.
+                        </p>
+                    </div>
+                ) : (
+                    <div className="flex flex-col gap-8 md:flex-row">
+                        <div className="w-full flex-1">
+                            <Separator />
+                            {Object.entries(items).map(
+                                ([slug, item], index, array) => (
+                                    <div key={slug}>
+                                        <CartItem item={item} slug={slug} />
+                                        {index < array.length - 1 && (
+                                            <Separator />
+                                        )}
+                                    </div>
+                                ),
+                            )}
+                            <Separator />
                         </div>
-                    ) : (
-                        <>
-                            <div className="flex-1">
-                                <Separator />
-                                {Object.entries(items).map(
-                                    ([slug, item], index, array) => (
-                                        <div key={slug}>
-                                            <CartItem item={item} slug={slug} />
-                                            {index < array.length - 1 && (
-                                                <Separator />
-                                            )}
-                                        </div>
-                                    ),
-                                )}
-                                <Separator />
-                            </div>
-                            <div className="ml-10">
-                                <OrderSummary
-                                    itemCount={itemCount}
-                                    total={total}
-                                />
-                            </div>
-                        </>
-                    )}
-                </div>
+                        <OrderSummary itemCount={itemCount} total={total} />
+                    </div>
+                )}
             </Layout>
         </>
     );
