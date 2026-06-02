@@ -22,8 +22,8 @@ export default function Create() {
             <Head title="Bestellvorgang" />
             <Layout>
                 <h1 className="mb-5 text-3xl font-bold">Bestellung</h1>
-                <div className="flex">
-                    <div className="mr-10 flex-1">
+                <div className="flex flex-col gap-8 md:flex-row">
+                    <div className="w-full flex-1 md:mr-10">
                         <div className="space-y-5">
                             <h2 className="text-xl font-semibold">
                                 1. Rechnungs- und Lieferadresse
@@ -35,7 +35,7 @@ export default function Create() {
                                     submit();
                                 }}
                             >
-                                <FieldGroup className="grid grid-cols-2">
+                                <FieldGroup className="grid grid-cols-1 md:grid-cols-2">
                                     <Field>
                                         <FieldLabel htmlFor="firstName">
                                             Vorname
@@ -131,8 +131,12 @@ export default function Create() {
                                         />
                                     </Field>
 
-                                    <div className="col-span-2">
-                                        <Button type="submit">
+                                    <div className="md:col-span-2">
+                                        <Button
+                                            disabled
+                                            type="submit"
+                                            className="w-full md:w-auto"
+                                        >
                                             Kundendaten abschicken
                                         </Button>
                                     </div>
