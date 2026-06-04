@@ -1,4 +1,7 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
+import { PlusCircle } from 'lucide-react';
+import { route } from 'ziggy-js';
+import { Button } from '@/components/ui/button';
 import type { Product } from './columns';
 import { columns } from './columns';
 import { DataTable } from '@/components/ui/data-table';
@@ -19,8 +22,16 @@ export default function AdminProductsIndex({
     return (
         <>
             <Head title="Produkte verwalten" />
-            <div className="p-6">
-                <h1 className="mb-6 text-2xl font-semibold">Produkte</h1>
+            <div className="space-y-6 p-6">
+                <h1 className="text-2xl font-semibold">Produkte</h1>
+                <div>
+                    <Link href={route('admin.products.create')}>
+                        <Button>
+                            <PlusCircle />
+                            Neues Produkt anlegen
+                        </Button>
+                    </Link>
+                </div>
                 <DataTable columns={columns} data={products.data} />
             </div>
         </>
