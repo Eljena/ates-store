@@ -1,7 +1,5 @@
-import { router } from '@inertiajs/react';
 import { Edit, MoreHorizontal, Trash } from 'lucide-react';
 import { useState } from 'react';
-import { route } from 'ziggy-js';
 import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,

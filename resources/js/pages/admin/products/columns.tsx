@@ -1,6 +1,4 @@
 import type { ColumnDef } from '@tanstack/react-table';
-import { Edit, Trash } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import ProductActions from './product-actions';
 
 export type Product = {
