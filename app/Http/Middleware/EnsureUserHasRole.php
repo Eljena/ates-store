@@ -24,7 +24,6 @@ class EnsureUserHasRole
             }
         }
 
-        abort(403);
-
+        return redirect()->route('dashboard');
     }
 }
