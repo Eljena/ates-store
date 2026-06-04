@@ -42,6 +42,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Portal - Admin + Produktmanager
 Route::middleware(['auth', 'verified', 'role:admin,product_manager'])->group(function () {
     Route::get('/admin/products', [AdminProductController::class, 'index'])->name('admin.products.index');
+
+    Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 });
 
 // Nur Admin

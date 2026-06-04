@@ -15,4 +15,10 @@ class AdminProductController extends Controller
             'products' => $products,
         ]);
     }
+
+    public function destroy(Product $product) {
+        $product->delete();
+
+        return redirect()->route('admin.products.index');
+    }
 }

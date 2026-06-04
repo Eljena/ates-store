@@ -1,4 +1,7 @@
 import type { ColumnDef } from '@tanstack/react-table';
+import { Edit, Trash } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import ProductActions from './product-actions';
 
 export type Product = {
     id: number;
@@ -46,9 +49,15 @@ export const columns: ColumnDef<Product>[] = [
             const stock = row.getValue<number>('stock');
 
             return (
-                <span className={stock === 0 ? 'font-medium text-red-500' : ''}>
-                    {stock}
-                </span>
+                <div className="flex justify-center">
+                    <span
+                        className={
+                            stock === 0 ? 'font-medium text-red-500' : ''
+                        }
+                    >
+                        {stock}
+                    </span>
+                </div>
             );
         },
     },
@@ -59,5 +68,15 @@ export const columns: ColumnDef<Product>[] = [
             new Date(row.getValue<string>('created_at')).toLocaleDateString(
                 'de-DE',
             ),
+    },
+    {
+        id: 'actions',
+        cell: ({ row }) => {
+            return (
+                <div className="flex justify-center">
+                    <ProductActions id={row.original.id} />
+                </div>
+            );
+        },
     },
 ];

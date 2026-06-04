@@ -36,7 +36,7 @@ export function DataTable<TData, TValue>({
                     {table.getHeaderGroups().map((headerGroup) => (
                         <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header) => (
-                                <TableHead key={header.id}>
+                                <TableHead key={header.id} className="border-r last:border-r-0">
                                     {flexRender(
                                         header.column.columnDef.header,
                                         header.getContext()
@@ -49,9 +49,9 @@ export function DataTable<TData, TValue>({
                 <TableBody>
                     {table.getRowModel().rows.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.id}>
+                            <TableRow key={row.id} className='odd:bg-muted/50'>
                                 {row.getVisibleCells().map((cell) => (
-                                    <TableCell key={cell.id}>
+                                    <TableCell key={cell.id} className="border-r last:border-r-0">
                                         {flexRender(
                                             cell.column.columnDef.cell,
                                             cell.getContext()
