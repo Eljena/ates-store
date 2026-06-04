@@ -7,10 +7,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminSettingsController;
+use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\LegalController;
 use App\Http\Middleware\EnsureCartIsNotEmpty;
-use App\Http\Middleware\EnsureUserIsAdmin;
 use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -34,14 +34,21 @@ Route::get('/checkout/success', function() {
     return Inertia::render('shop/checkout/success');
 })->name('checkout.success');
 
-/** Eingeloggt */
+// Alle eingeloggten User
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
 
-Route::middleware(['auth', 'verified', EnsureUserIsAdmin::class])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+// Portal - Admin + Produktmanager
+Route::middleware(['auth', 'verified', 'role:admin,product_manager'])->group(function () {
+    Route::get('/admin/products', [AdminProductController::class, 'index'])->name('admin.products.index');
 });
+
+// Nur Admin
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+    Route::get('/admin/settings', [AdminSettingsController::class, 'index'])->name('admin.settings');
+});
+
 
 /** Impressum */
 Route::get('/imprint', [LegalController::class, 'imprint'])->name('imprint');

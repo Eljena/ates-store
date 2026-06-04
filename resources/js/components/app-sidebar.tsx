@@ -29,7 +29,7 @@ const portalNavItems: NavItem[] = [
     },
     {
         title: 'Produkte',
-        href: '#',
+        href: route('admin.products.index'),
         icon: Tag,
     },
 ];
@@ -42,7 +42,7 @@ const adminNavItems: NavItem[] = [
     },
     {
         title: 'Einstellungen',
-        href: route('admin.index'),
+        href: route('admin.settings'),
         icon: Wrench,
     },
 ];
