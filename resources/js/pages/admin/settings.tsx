@@ -14,8 +14,8 @@ export default function index() {
 index.layout = {
     breadcrumbs: [
         {
-            title: 'Admin',
-            href: '/admin',
+            title: 'Einstellungen',
+            href: '/admin/settings',
         },
     ],
 };

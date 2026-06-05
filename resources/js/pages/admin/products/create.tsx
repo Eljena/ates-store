@@ -35,7 +35,7 @@ export default function AdminProductsCreate({ categories }: Props) {
         category_id: '',
     });
 
-    function handleSubmit(e: React.SyntheticEvent) {
+    function handleSubmit(e: { preventDefault: () => void }) {
         e.preventDefault();
 
         post(route('admin.products.store'));
@@ -177,11 +177,11 @@ export default function AdminProductsCreate({ categories }: Props) {
     );
 }
 
-AdminProductsCreate.Layout = {
+AdminProductsCreate.layout = {
     breadcrumbs: [
         {
-            title: 'Admin',
-            href: '/admin',
+            title: 'Produkte',
+            href: '/admin/products',
         },
     ],
 };

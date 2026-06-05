@@ -2,9 +2,9 @@ import { Head, Link } from '@inertiajs/react';
 import { PlusCircle } from 'lucide-react';
 import { route } from 'ziggy-js';
 import { Button } from '@/components/ui/button';
+import { DataTable } from '@/components/ui/data-table';
 import type { Product } from './columns';
 import { columns } from './columns';
-import { DataTable } from '@/components/ui/data-table';
 
 interface AdminProductsIndexProps {
     products: {
@@ -41,8 +41,8 @@ export default function AdminProductsIndex({
 AdminProductsIndex.layout = {
     breadcrumbs: [
         {
-            title: 'Admin',
-            href: '/admin',
+            title: 'Produkte',
+            href: '/admin/products',
         },
     ],
 };

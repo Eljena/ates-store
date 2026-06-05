@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Inertia\Inertia;
 use Illuminate\Validation\Rule;
+use Closure;
 
 class AdminProductController extends Controller
 {
@@ -30,7 +31,16 @@ class AdminProductController extends Controller
 
     public function store(Request $request): RedirectResponse {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255', Rule::unique('products', 'slug')->where(fn ($q) => $q->where('slug', Str::slug($request->name)))],
+            'name' => [
+                'required', 
+                'string', 
+                'max:255', 
+                function (string $attribute, mixed $value, Closure $fail) {
+                     if (Product::where('slug', Str::slug((string) $value))->exists()) {
+                         $fail('Der Produktname ist bereits vergeben.');
+                     }
+                 }
+            ],
             'brand' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'pricePerKg' => 'nullable|numeric|min:0',

@@ -19,7 +19,7 @@ class EnsureUserHasRole
         $userRole = $request->user()?->role;
 
         foreach($roles as $role) {
-            if ($userRole === Role::from($role)) {
+            if ($userRole === Role::tryFrom($role)) {
                 return $next($request);
             }
         }
