@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Inertia\Inertia;
 
-class AdminController extends Controller
+class AdminSettingsController extends Controller
 {
     public function index() {
         $users = User::all();
 
-        return Inertia::render('admin/index', [
+        return Inertia::render('admin/settings', [
             'users' => $users,
         ]);
     }
