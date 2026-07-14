@@ -21,8 +21,8 @@ export default function ProductActions({ id }: { id: number }) {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                    <DropdownMenuItem className="text-black">
-                        <Edit className="text-black" />
+                    <DropdownMenuItem>
+                        <Edit />
                         Bearbeiten
                     </DropdownMenuItem>
                     <DropdownMenuItem
