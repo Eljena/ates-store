@@ -46,6 +46,9 @@ Route::middleware(['auth', 'verified', 'role:admin,product_manager'])->group(fun
     Route::get('/admin/products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
     Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
 
+    Route::get('admin/products/{product}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('admin/products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
+
     Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 });
 

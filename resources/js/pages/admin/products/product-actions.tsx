@@ -1,5 +1,7 @@
+import { Link } from '@inertiajs/react';
 import { Edit, MoreHorizontal, Trash } from 'lucide-react';
 import { useState } from 'react';
+import { route } from 'ziggy-js';
 import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
@@ -21,9 +23,11 @@ export default function ProductActions({ id }: { id: number }) {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                    <DropdownMenuItem>
-                        <Edit />
-                        Bearbeiten
+                    <DropdownMenuItem asChild>
+                        <Link href={route('admin.products.edit', id)}>
+                            <Edit />
+                            Bearbeiten
+                        </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         className="text-red-500"
