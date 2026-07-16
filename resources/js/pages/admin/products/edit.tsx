@@ -53,7 +53,7 @@ export default function AdminProductsEdit({ product, categories }: Props) {
     function handleSubmit(e: { preventDefault: () => void }) {
         e.preventDefault();
 
-        put(route('admin.products.update', product.id), {
+        put(route('admin.products.update', { product: product.id }), {
             onSuccess: () => toast.success('Produkt aktualisiert'),
             onError: () => toast.error('Speichern fehlgeschlagen'),
         });

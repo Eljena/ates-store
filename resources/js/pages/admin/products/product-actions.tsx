@@ -24,7 +24,9 @@ export default function ProductActions({ id }: { id: number }) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                     <DropdownMenuItem asChild>
-                        <Link href={route('admin.products.edit', id)}>
+                        <Link
+                            href={route('admin.products.edit', { product: id })}
+                        >
                             <Edit />
                             Bearbeiten
                         </Link>
