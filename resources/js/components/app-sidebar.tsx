@@ -16,38 +16,38 @@ import {
 import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
 
-const portalNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Bestellungen',
-        href: '#',
-        icon: PackageOpen,
-    },
-    {
-        title: 'Produkte',
-        href: route('admin.products.index'),
-        icon: Tag,
-    },
-];
-
-const adminNavItems: NavItem[] = [
-    {
-        title: 'Kategorien',
-        href: '#',
-        icon: FolderGit2,
-    },
-    {
-        title: 'Einstellungen',
-        href: route('admin.settings'),
-        icon: Wrench,
-    },
-];
-
 export function AppSidebar() {
+    const portalNavItems: NavItem[] = [
+        {
+            title: 'Dashboard',
+            href: dashboard(),
+            icon: LayoutGrid,
+        },
+        {
+            title: 'Bestellungen',
+            href: '#',
+            icon: PackageOpen,
+        },
+        {
+            title: 'Produkte',
+            href: route('admin.products.index'),
+            icon: Tag,
+        },
+    ];
+
+    const adminNavItems: NavItem[] = [
+        {
+            title: 'Kategorien',
+            href: '#',
+            icon: FolderGit2,
+        },
+        {
+            title: 'Einstellungen',
+            href: route('admin.settings'),
+            icon: Wrench,
+        },
+    ];
+
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
